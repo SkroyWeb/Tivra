@@ -7,17 +7,40 @@
   <meta name="viewport" content="width=device-width">
   <title>Know about Rudra Tez - SkroyWeb</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+    .pdf-container {
+      display: none;
+    }
+  </style>
+  <script>
+    function togglePDF() {
+      var pdfContainer = document.getElementById('pdfContainer');
+      if (pdfContainer.style.display === 'none') {
+        pdfContainer.style.display = 'block';
+      } else {
+        pdfContainer.style.display = 'none';
+      }
+    }
+  </script>
 </head>
 
 <body>
-  
-  
   <h1>Hey Tezian's</h1>
-  "Here are the way to know about him" :
+  "Here are the ways to know about him" :
   <br>
-  <img height="40" width="50" src="https://i.im.ge/2024/03/22/RfzpTX.Screenshot-20240322-0718182.png" alt "image">
-  <a href="https://www.instagram.com/rudra_tez?utm_source=ig_web_button_share_sheet&igsh=ODdmZWVhMTFiMw==">  Mr. Tez</a>
-  
+  <img height="40" width="50" src="https://i.im.ge/2024/03/22/RfzpTX.Screenshot-20240322-0718182.png" alt="image">
+  <a href="https://www.instagram.com/rudra_tez?utm_source=ig_web_button_share_sheet&igsh=ODdmZWVhMTFiMw==">Mr. Tez</a>
+  <br>
+  <div style="text-align: left; padding: 10px 0px;">
+    <button onclick="togglePDF()">Chapter 01</button>
+    <br>
+    <button onclick="togglePDF()">Chapter 02</button>
+  </div>
+  <div id="pdfContainer" class="pdf-container" style="text-align: right; padding: 20px;">
+    <iframe src="hhmh1an.pdf" width="80%" height="620px">
+        <p>Your browser does not support iframes.</p>
+    </iframe>
+  </div>
 </body>
 
 </html>
