@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow Mr. Tez - SkroyWeb</title>
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+
+<body>
+    <nav style="background-color: rgba(169, 169, 169, 0.5); padding: 10px; margin: -8px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <img height="50" width="70" src="https://imagetolink.com/ib/4eXyhI68Lp.png" alt="image">
+            <div>
+                <img height="15" width="70" src="https://imagetolink.com/ib/7PjwAL2mYI.png" alt="image">
+            </div>
+        </div>
+        <ul style="list-style: none; display: flex; gap: 10px;">
+            <!-- Use the image as a link -->
+            <a href="follow.html">login</a>
+        </ul>
+    </nav>
+    <div style="text-align: left; margin-top: 10px;">
+        <!-- Adjusted width of the banner container -->
+        <div style="width: calc(100% + 8px); border-radius: 10px; overflow: hidden; margin-left: -4px;">
+            <img style="width: 100%; height: 5em; object-fit: cover;"
+                src="https://imagetolink.com/ib/urpW9tP42S.PNG" alt="Banner">
+        </div>
+        <div style="display: flex; align-items: center; margin-top: -25px; margin-left: 0px">
+            <img src="https://i.im.ge/2024/03/22/RfzpTX.Screenshot-20240322-0718182.png" alt="Profile Picture"
+                id="profilePicture" style="border-radius: 50%; width: 80px; height: 80px; margin-right: 30px;">
+            <div>
+                <img src="https://cdn-icons-png.flaticon.com/512/2920/2920466.png" alt="Edit Profile" style="width: 20px; height: 20px; cursor: pointer;" onclick="openProfileUploader()">
+            </div>
+            <h3>Tez Singh</h3>
+        </div>
+        <!-- Wrap @rudra_tez in a separate div for new line -->
+        <div style="margin-left: 115px; margin-top: -30px;">
+          <span style="color: rgba(50, 50, 50, 1); cursor: pointer;" onclick="togglePopup();">@rudra_tez</span>
+          <span style="margin-left: 10px; color: rgba(50, 50, 50, 0.8); cursor: pointer; margin-top: -30px;">x followers</span>
+          <span style="margin-left: 10px; color: rgba(50, 50, 50, 0.8); cursor: pointer;">y videos</span>
+        </div>
+        <pre style="font-size: 14px">@description</pre>
+
+        <!-- Popup Container -->
+        <div style="bottom: 0; position: fixed; width: calc(100% - 56px); background-color: white; box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease-in-out; transform: translateY(100%); z-index: 999; padding: 20px; border-radius: 15px;" id="popup-container">
+            <span style="position: absolute; top: 10px; right: 10px; cursor: pointer; color: #777;" onclick="togglePopup();">&times;</span>
+            <h3>Popup Content Goes Here</h3>
+            <p>This is a popup content. You can add any content here.</p>
+        </div>
+
+        <!-- Overlay -->
+        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 998; display: none;" id="overlay" onclick="togglePopup();"></div>
+
+        <!-- Profile Picture Uploader -->
+        <input type="file" id="profileUploader" style="display: none;" accept="image/*" onchange="handleProfileUpload(event)">
+    </div>
+
+    <script>
+        // Variables to track popup state and touch position
+        let isPopupOpen = false;
+        let startY = 0;
+
+        // Function to handle touch start event
+        function onTouchStart(event) {
+            startY = event.touches[0].clientY;
+        }
+
+        // Function to handle touch move event
+        function onTouchMove(event) {
+            const currentY = event.touches[0].clientY;
+            const deltaY = currentY - startY;
+
+            // If popup is open and swipe down is detected, close the popup
+            if (isPopupOpen && deltaY > 50) {
+                closePopup();
+            }
+        }
+
+        // Function to toggle the popup
+        function togglePopup() {
+            if (isPopupOpen) {
+                closePopup();
+            } else {
+                openPopup();
+            }
+        }
+
+        // Function to open the popup
+        function openPopup() {
+            document.getElementById('popup-container').style.transform = 'translateY(0%)';
+            document.getElementById('popup-container').style.bottom = '5px'; // Rise up 5px
+            document.getElementById('overlay').style.display = 'block';
+            isPopupOpen = true;
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('popup-container').style.transform = 'translateY(100%)';
+            document.getElementById('popup-container').style.bottom = '0'; // Reset bottom position
+            document.getElementById('overlay').style.display = 'none';
+            isPopupOpen = false;
+        }
+
+        // Function to open profile picture uploader
+        function openProfileUploader() {
+            document.getElementById('profileUploader').click();
+        }
+
+        // Function to handle profile picture upload
+        function handleProfileUpload(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profilePicture').src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        // Add event listeners for touch events
+        document.addEventListener('touchstart', onTouchStart);
+        document.addEventListener('touchmove', onTouchMove);
+    </script>
+</body>
+
+</html>
