@@ -20,7 +20,7 @@
         </div>
         <ul style="list-style: none; display: flex; gap: 10px;">
             <!-- Use the image as a link -->
-            <a href="account.html">login</a>
+          <a href="#" onclick="login()" style=" transform: scaleX(1);  transition: transform 0.3s ease-in-out; border-radius: 5px; border: 2px solid black; padding: 2px; padding-left: 10px; padding-right: 10px; text-decoration: none; background-color: none; color: #504f4f;" onmouseover="this.style.backgroundColor='white'; this.style.transform='scaleX(1.2)';" onmouseout="this.style.backgroundColor='skyblue'; this.style.transform='scaleX(1)';">login</a>
         </ul>
     </nav>
     <div style="text-align: left; margin-top: 10px;">
@@ -102,6 +102,11 @@
         // Add event listeners for touch events
         document.addEventListener('touchstart', onTouchStart);
         document.addEventListener('touchmove', onTouchMove);
+    </script>
+    <script>
+        function login(){
+          window.location.href = "account.html";
+        }
     </script>
 </body>
 
