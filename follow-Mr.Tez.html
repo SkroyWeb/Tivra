@@ -317,11 +317,16 @@ gdbdghotala</pre>
 
       // Get the grid container
       const gridContainer = document.getElementById('imageGrid');
+      let imageCounter = 0;
 
       // Add images to the grid
       imageSources.forEach(src => {
           const img = document.createElement('img');
+          img.id = "cont" + imageCounter;
           img.src = src;
+          img.onclick = function() {
+              tip(this.id);
+          };
           img.style.height = "150px";
           img.style.width = "117px";
           img.style.marginLeft = "-6px";
@@ -331,7 +336,9 @@ gdbdghotala</pre>
           img.style.backgroundColor = "green";
             
           gridContainer.appendChild(img);
+          imageCounter++;
       });
+
   </script>
   
 </body>
