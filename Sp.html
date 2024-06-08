@@ -19,14 +19,27 @@
       -webkit-background-clip: text; 
       color: transparent;
     }
+        @media screen and (max-width: 402px) {
+            
+            .f-s{
+              margin-top: 24px;
+              margin-left: 40px;
+            }
+          }
+          @media screen and (min-width: 403px) {
+            .f-s {
+              margin-top: 20px;
+              margin-left: 180px;
+            }
+          }
     </style>
 </head>
 <body>
 <nav id="nab" style="position: sticky; top: -98px; background-color: rgba(213, 212, 212, 1); padding: 10px; margin: -8px; display: flex; justify-content: space-between; align-items: center;">
     <div>
-        <img height="50" width="70" src="https://imagetolink.com/ib/4eXyhI68Lp.png" alt="image">
+        <img height="50" width="70" src="https://imagetolink.com/ib/XCLh5h5Zmp.png" alt="image">
         <div>
-            <img height="15" width="70" src="https://imagetolink.com/ib/7PjwAL2mYI.png" alt="image">
+            <img height="15" width="70" src="https://imagetolink.com/ib/74wXFfamok.jpg" alt="image">
         </div>
     </div>
 
@@ -51,13 +64,14 @@
             </a>
         </div>
         <a href="Sp.html">
-            <img id="fm" style="transition: 0.8s;" height="45" width="100%" src="https://imagetolink.com/ib/acvzYsoPiv.png" alt="image">
+            <img id="fm" style="transition: 0.8s;" height="45" width="100%" src="https://imagetolink.com/ib/VMTe1yQngZ.png" alt="image">
         </a>
     </ul>
 </nav>
 <div id="userContainer">
     <!-- User information will be dynamically added here -->
 </div>
+<div style="background-color: grey; height: 60px; min-width: 350px; display: flex; justify-content: center; align-items: center; border-radius: 10px; margin-left: -3.2px;" class="navigation"></div>
 
 <script>
     // Array of user data including small and large image URLs
@@ -68,8 +82,8 @@
             follow: "follow-Mr.Tez.html",
             contact: "john@example.com", 
             class: "Mathematics", 
-            profImageUrl: "https://imagetolink.com/ib/EC3XNOdWpB.png", 
-            impImageUrl: "https://imagetolink.com/ib/urpW9tP42S.PNG" 
+            profImageUrl: "https://imagetolink.com/ib/ZofTI43d4A.jpg", 
+            impImageUrl: "https://imagetolink.com/ib/E2NyU0k5Uh.jpg" 
         },
         { 
             name: "Mr. Roy",
@@ -77,8 +91,8 @@
             follow: "follow-Mr.Roy.html",
             contact: "jane@example.com", 
             class: "Science", 
-            profImageUrl: "https://imagetolink.com/ib/T2XhAzYdJJ.png", 
-            impImageUrl: "https://imagetolink.com/ib/4OAsQh5V0j.png" 
+            profImageUrl: "https://imagetolink.com/ib/ygt3Tt7D7M.jpg", 
+            impImageUrl: "https://imagetolink.com/ib/SLiHCUPNPQ.jpg" 
         },
         { 
             name: "Michael Johnson",
@@ -107,7 +121,7 @@
                         <a href="https://youtube.com/@rudra_tez?si=RXkSOr6Q5580rCDe">@rudra-tez</a>
                     </details>
                     <ul style="list-style: none; display: flex; gap: 10px;">
-                        <button onclick="followed(this)" class="f-s" style="margin-top: -5px; cursor: pointer; border-radius: 10px; width: 120px; height: 30px;">follow</button>
+                        <button onclick="followed(this)" class="f-s" style="margin-top: -3px; cursor: pointer; border-radius: 10px; width: 120px; height: 30px;">follow</button>
                     </ul>
                 </div>
                 <br>
@@ -119,7 +133,7 @@
                         <p padding-left="12px">Nothing to show yet!!!..</p>
                     </details>
                 </div>
-                <hr style="width: 100vw; margin-left: -10px; margin-top: -1px; background-color: rgba(213, 212, 212, 1); height: 2px;">
+                <hr style="width: 100ew; margin-top: -1px; background-color: rgba(213, 212, 212, 1); height: 2px;">
             </div>
         `;
     }
@@ -160,5 +174,6 @@
 
     }
 </script>
+
 </body>
 </html>
