@@ -97,7 +97,7 @@ log.style.width='0'; log.style.fontSize='0'; log.style.padding='0'; log.style.bo
         <div style="display: flex; align-items: center; margin-top: -28px; margin-left: 10px">
           <img onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';" onclick="tip('profilePicture');"src="https://imagetolink.com/ib/ZofTI43d4A.jpg" alt="Profile Picture" id="profilePicture" style="z-index: 1; border-radius: 50%; width: 90px; height: 90px; margin-right: 20px; cursor: pointer;">
 
-          <span id="Prev" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1000;">
+          <span id="Prev" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.92); z-index: 1000;">
               <!-- Close button for the image preview -->
               <span style="position: absolute; top: 10px; right: 10px; cursor: pointer; color: #ffffff; font-size: 24px;" onclick="cip();">&times;</span>
               <!-- Image preview -->
@@ -145,7 +145,7 @@ gdbdghotala</pre>
         <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 998; display: none;" id="overlay" onclick="togglePopup();"></div>
     </div>
     <nav style="height: 5px; border-top: 1.5px solid #edcbcb; background-color: transparent; padding: 10px; margin: 10px; display: flex; justify-content: space-between; align-items: center;">
-      <h5 id="moment" class="f-p nav-item neon-text">moment</h5>
+      <h5 onclick="chact()" id="moment" class="f-p nav-item neon-text">moment</h5>
       <h5 id="roll" class="nav-item">roll</h5>
       <h5 id="Lvid" class="nav-item">Lvid</h5>
       <h5 id="playlist" class="f-d nav-item">playlist</h5>
@@ -288,6 +288,7 @@ gdbdghotala</pre>
 
           // Add active class to the clicked nav item
           event.target.classList.add('neon-text');
+        chact()
       }
 
       // Add click event listener to all nav items
@@ -309,12 +310,42 @@ gdbdghotala</pre>
     }
   </script>
   <script>
+    chact()
+    function chact() {
+        // Get the grid container
+        const gridContainer = document.getElementById('imageGrid');
+
+        // Clear the grid before populating with new images
+        gridContainer.innerHTML = "";
+
+        // Check which navigation item is active
+        const momentNavItem = document.getElementById('moment');
+        const rollNavItem = document.getElementById('roll');
+        const LvidNavItem = document.getElementById('Lvid');
+        const playlistNavItem = document.getElementById('playlist');
+
+        if (momentNavItem.classList.contains('neon-text')) {
+            // Populate the grid with images for the "moment" section
+            chal(gridContainer);
+        } else if (rollNavItem.classList.contains('neon-text')) {
+            // Populate the grid with images for the "roll" section
+            chak(gridContainer);
+        } else if (LvidNavItem.classList.contains('neon-text')) {
+            // Populate the grid with images for the "Lvid" section
+            populateGridWithLvidImages(gridContainer);
+        } else if (playlistNavItem.classList.contains('neon-text')) {
+            // Populate the grid with images for the "playlist" section
+            populateGridWithPlaylistImages(gridContainer);
+        }
+    }
+
+    // Functions to populate the grid with images for different sections
+    function chal() {
       // List of image sources
       const imageSources = [
-          "https://i.imghippo.com/files/POxzk1717759435.jpg", "https://images.unsplash.com/photo-1618588507085-c79565432917?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1608159477202-8a0e27f807b4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://plus.unsplash.com/premium_photo-1669748156838-33fda144e8dd?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1620053580376-3de604e91953?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D", "https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+          "https://images.unsplash.com/photo-1618588507085-c79565432917?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1608159477202-8a0e27f807b4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://plus.unsplash.com/premium_photo-1669748156838-33fda144e8dd?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1620053580376-3de604e91953?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D", "https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
           // Add more image URLs here
       ];
-
       // Get the grid container
       const gridContainer = document.getElementById('imageGrid');
       let imageCounter = 0;
@@ -327,6 +358,7 @@ gdbdghotala</pre>
           img.onclick = function() {
               tip(this.id);
           };
+          img.style.curser = "pointer";
           img.style.height = "150px";
           img.style.width = "117px";
           img.style.marginLeft = "-6px";
@@ -338,6 +370,100 @@ gdbdghotala</pre>
           gridContainer.appendChild(img);
           imageCounter++;
       });
+    }
+    function chak() {
+      // List of image sources
+      const imageSources = [
+          "https://i.imghippo.com/files/POxzk1717759435.jpg", "https://www.w3schools.com/html/mov_bbb.mp4", "https://images.unsplash.com/photo-1608159477202-8a0e27f807b4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://plus.unsplash.com/premium_photo-1669748156838-33fda144e8dd?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1620053580376-3de604e91953?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww", "https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D", "https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+          // Add more image URLs here
+      ];
+      // Get the grid container
+      const gridContainer = document.getElementById('imageGrid');
+      let imageCounter = 0;
+
+      // Add images to the grid
+      imageSources.forEach(src => {
+          let img;
+          if (src.endsWith('.mp4')) {
+          img = document.createElement('video');
+          img.id = "cont" + imageCounter;
+          img.src = src;
+          img.controls=true;
+          } else {
+              img = document.createElement('img');
+                img.id = "cont" + imageCounter;
+                img.src = src;
+          }
+          img.onclick = function() {
+              tip(this.id);
+          };
+          img.style.curser = "pointer";
+          img.style.height = "150px";
+          img.style.width = "117px";
+          img.style.marginLeft = "-6px";
+          img.style.marginRight = "6px";
+          img.style.textAlign = "center";
+          img.style.display = "block";
+          img.style.backgroundColor = "green";
+
+          gridContainer.appendChild(img);
+          imageCounter++;
+      });
+    }
+      function chanp() {
+          // List of media sources
+          const mediaSources = [
+              "https://i.imghippo.com/files/POxzk1717759435.jpg",
+              "https://www.w3schools.com/html/mov_bbb.mp4",
+              "https://images.unsplash.com/photo-1608159477202-8a0e27f807b4?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww",
+              "https://plus.unsplash.com/premium_photo-1669748156838-33fda144e8dd?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww",
+              "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww",
+              "https://images.unsplash.com/photo-1620053580376-3de604e91953?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmVhdXRpZnVsJTIwbmF0dXJlfGVufDB8fDB8fHww",
+              "https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+              "https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+              // Add more media URLs here
+          ];
+
+          // Get the grid container
+          const gridContainer = document.getElementById('imageGrid');
+          let mediaCounter = 0;
+
+          // Add media to the grid
+          mediaSources.forEach(src => {
+              let mediaElement;
+
+              if (src.endsWith('.mp4')) {
+                  // Create video element for video sources
+                  mediaElement = document.createElement('video');
+                  mediaElement.src = src;
+                  mediaElement.controls = true;
+                  mediaElement.style.height = "150px";
+                  mediaElement.style.width = "117px";
+                  mediaElement.style.backgroundColor = "green";
+              } else {
+                  // Create img element for image sources
+                  mediaElement = document.createElement('img');
+                  mediaElement.src = src;
+                  mediaElement.style.height = "150px";
+                  mediaElement.style.width = "117px";
+                  mediaElement.style.backgroundColor = "green";
+              }
+
+              mediaElement.id = "cont" + mediaCounter;
+              mediaElement.style.cursor = "pointer";
+              mediaElement.style.marginLeft = "-6px";
+              mediaElement.style.marginRight = "6px";
+              mediaElement.style.textAlign = "center";
+              mediaElement.style.display = "block";
+              mediaElement.onclick = function() {
+                  tip(this.id);
+              };
+
+              gridContainer.appendChild(mediaElement);
+              mediaCounter++;
+          });
+      }
+
 
   </script>
   
