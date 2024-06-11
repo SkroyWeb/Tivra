@@ -375,7 +375,6 @@ gdbdghotala</pre>
       posters=["https://images.unsplash.com/photo-1626444344029-5c680f7513c1?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlYXV0aWZ1bCUyMG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D", "none", "none"]
       const gridContainer = document.getElementById('imageGrid');
       let imageCounter = 0;
-      let ttp = 2000;
       imageSources.forEach(src => {
           let img;
           if (src.endsWith('.mp4')) {
@@ -384,12 +383,15 @@ gdbdghotala</pre>
           img.src = src;
           img.zIndex="1";
           img.muted=true;
+          
+          if(imageCounter===0) {
+            img.poster = "https://imagetolink.com/ib/MqbHxJiMFB.png"
+          }
           img.play();
           setTimeout(function(){
             img.muted=false;
             img.pause();
-          }, ttp);
-            ttp=ttp+2000;
+          }, 8000);
           img.addEventListener("contextmenu", function(e) {
             e.preventDefault();
           });
