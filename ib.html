@@ -38,7 +38,9 @@
     <div id="progressBar">
         <div id="progress">0%</div>
     </div>
-    <div id="result"></div>
+    <div id="result">
+        <img id="prof" src="">
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
@@ -72,7 +74,6 @@
                 );
 
                 const videoUrl = response.data.secure_url;
-                document.getElementById('result').innerHTML = `${videoUrl}`;
             } catch (error) {
                 console.error('Error uploading the video:', error);
                 document.getElementById('result').innerText = 'Error uploading the video.';
