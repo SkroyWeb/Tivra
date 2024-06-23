@@ -81,7 +81,7 @@
                 );
 
                 const videoUrl = response.data.secure_url;
-                document.getElementById('result').innerHTML = `<img id="prof" src="${urp}">`;
+                document.getElementById('result').innerHTML = `<img id="prof" src="${urp}" width="200px">`;
             } catch (error) {
                 console.error('Error uploading the video:', error);
                 document.getElementById('result').innerText = 'Error uploading the video.';
