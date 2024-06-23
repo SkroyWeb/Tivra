@@ -32,9 +32,7 @@
 <body>
     <h1>Upload Video</h1>
     <form id="uploadForm">
-        <input type="file" id="videoFile" name="file" required>
-        <input type="text" id="title" name="title" placeholder="Enter video title">
-        <textarea id="description" name="description" placeholder="Enter video description"></textarea>
+        <input type="file" id="videoFile" name="videoFile" required>
         <button type="submit">Upload</button>
     </form>
     <div id="progressBar">
@@ -51,13 +49,10 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const fileField = document.getElementById('videoFile').files[0];
-            const title = document.getElementById('title').value;
-            const description = document.getElementById('description').value;
 
             const formData = new FormData();
             formData.append('file', fileField);
             formData.append('upload_preset', 'Skroy_4002'); // Change this to your Cloudinary upload preset
-            formData.append('context', `title=${title}|description=${description}`);
 
             try {
                 progressBar.style.display = 'block'; // Show progress bar
@@ -77,7 +72,7 @@
                 );
 
                 const videoUrl = response.data.secure_url;
-                document.getElementById('result').innerHTML = `Uploaded Successfully: <a href="${videoUrl}" target="_blank">${videoUrl}</a>`;
+                document.getElementById('result').innerHTML = `${videoUrl}`;
             } catch (error) {
                 console.error('Error uploading the video:', error);
                 document.getElementById('result').innerText = 'Error uploading the video.';
