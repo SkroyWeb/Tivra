@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Uploader</title>
+    <script>
+        let urp="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1719142101/awpkhaurdgxstojgef1y.jpg"
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,15 +33,18 @@
     </style>
 </head>
 <body>
-    <h1>Upload Content</h1>
-    <img id="prof" src="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1719144075/znril3tnhksjicufx9ro.jpg" width="200px">
+    <h1>Upload Video</h1>
     <form id="uploadForm">
-        <input type="file" id="videoFile" name="videoFile" required>
+        <input type="file" id="videoFile" name="file" required>
+        <input type="text" id="title" name="title" placeholder="Enter video title">
+        <textarea id="description" name="description" placeholder="Enter video description"></textarea>
         <button type="submit">Upload</button>
     </form>
+    
     <div id="progressBar">
         <div id="progress">0%</div>
     </div>
+    <div id="result"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
@@ -49,10 +55,13 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const fileField = document.getElementById('videoFile').files[0];
+            const title = "profilepic";
+            const description = document.getElementById('description').value;
 
             const formData = new FormData();
             formData.append('file', fileField);
             formData.append('upload_preset', 'Skroy_4002'); // Change this to your Cloudinary upload preset
+            formData.append('context', `title=${title}|description=${description}`);
 
             try {
                 progressBar.style.display = 'block'; // Show progress bar
@@ -72,6 +81,7 @@
                 );
 
                 const videoUrl = response.data.secure_url;
+                document.getElementById('result').innerHTML = `<img id="prof" src="${urp}" width="200px">`;
             } catch (error) {
                 console.error('Error uploading the video:', error);
                 document.getElementById('result').innerText = 'Error uploading the video.';
@@ -82,3 +92,4 @@
     </script>
 </body>
 </html>
+
