@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mr. Tꍟʐ - SkroyTivra</title>
+  <script>
+      let profilepic="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1719323857/grp2nibusxfgnoouenum.png";
+      let bannerpic="https://imagetolink.com/ib/E2NyU0k5Uh.jpg";
+  </script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <style>
     a, span, button, [onclick], #searchBar {
@@ -95,7 +99,7 @@
         <div style="display: flex; align-items: center; margin-top: -28px; margin-left: 10px">
           <img onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';" onclick="tip('profilePicture');"src="https://imagetolink.com/ib/ZofTI43d4A.jpg" alt="Profile Picture" id="profilePicture" style="z-index: 1; border-radius: 50%; width: 90px; height: 90px; margin-right: 20px; cursor: pointer;">
 
-          <span id="Prev" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1000;">
+          <span id="Prev" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.92); z-index: 1000;">
               <!-- Close button for the image preview -->
               <span style="position: absolute; top: 10px; right: 10px; cursor: pointer; color: #ffffff; font-size: 24px;" onclick="cip();">&times;</span>
               <!-- Image preview -->
@@ -172,7 +176,11 @@ gdbdghotala</pre>
         <!-- Banner Uploader -->
         <input type="file" id="bannerUploader" style="display: none;" accept="image/*" onchange="handleBannerUpload(event)">
     </div>
-
+    <script>
+        document.getElementById("profilePicture").src=profilepic;
+        document.getElementById("banner").src=bannerpic;
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
         // Variables to track popup state and touch position
         let isPopupOpen = false;
@@ -319,34 +327,44 @@ gdbdghotala</pre>
         }
     </script>
   <script>
-      function saveupload(fileInputId) {
+      async function saveupload(fileInputId) {
           // Get the file data from the specified file input element
+          const ctk=document.getElementById("saveChangesButton");
+          
           const fileInput = document.getElementById(fileInputId);
           const file = fileInput.files[0];
+          if(file) {
 
           // Create a FormData object and append the file to it
+          let title
+          let description
+           if(fileInputId==="profileUploader") {
+              title = "profilepic";
+          } else if(fileInputId==="bannerUploader") {
+              title = "bannerpic";
+          }
+          description="Mr.Tez"
           const formData = new FormData();
           formData.append('file', file);
-
-          // Send the file data to your Flask backend using AJAX
-          fetch('http://127.0.0.1:5000/upload', {
-              method: 'POST',
-              body: formData
-          })
-          .then(response => {
-              if (response.ok) {
-                  // If the request is successful, close the profile options popup
-                  closeProfileOptions();
-              } else {
-                  // If the request fails, display an error message
-                  alert('Failed to save changes. Please try again.');
-              }
-          })
-          .catch(error => {
-              // Handle any errors that occur during the fetch request
-              console.error('Error:', error);
+          formData.append('upload_preset', 'Skroy_4002');
+          formData.append('context', `title=${title}|description=${description}`);
+          try {
+              const response = await axios.post(
+                  'https://api.cloudinary.com/v1_1/dl3ga7ifw/upload',
+                  formData,
+                  {
+                      headers: { 'Content-Type': 'multipart/form-data' }
+                  }
+              );
+              const videoUrl = response.data.secure_url;
               
-          });
+              // Retrieve the URL of the uploaded file
+              
+          } catch (error) {
+              ctk.innerText="savage"
+          }
+          }
+
       }
   </script>
   <script>
@@ -444,3 +462,4 @@ item.addEventListener('click', handleActiveClass);
 </body>
 
 </html>
+
