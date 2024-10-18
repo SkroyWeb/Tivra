@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv='content-language' content='en-gb'>
     <title>SkroyTivra</title>
-    <link rel="shortcut icon" type="x-icon" href="https://imagetolink.com/ib/4eXyhI68Lp.png">
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
@@ -115,11 +114,11 @@
     </style>
 </head>
 <body>
-    <iframe id="mnp" style="border: none;" src="home.html"></iframe>
-    <footer id="footr" style="position: fixed; bottom: 0; margin-bottom: 4px; margin-left: 1%;" class="ft">
+    <iframe id="mnp" style="border: none;" src="sinuppg.html"></iframe>
+    <footer id="footr" style="z-index: -1; position: fixed; bottom: 0; margin-bottom: 4px; margin-left: 1%;" class="ft">
         <div style="background-color: grey; height: 60px; min-width: 350px; display: flex; justify-content: center; align-items: center; border-radius: 10px;" class="navigation">
             <ul style="display: flex; list-style: none;">
-                <li class="list active">
+                <li id="hompg" class="list active">
                     <a onclick="chp('mnp', 'home.html')" style="margin-left: -28px;" class="centered-link">
                         <span id="homei" style="background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none;" onmouseover="this.transform: translateY(-20px);" class="material-symbols-outlined icon">
                             House
@@ -127,7 +126,7 @@
                         <span class="text">Home</span>
                     </a>
                 </li>
-                <li class="list">
+                <li id="rolpg" class="list">
                     <a href="#" class="centered-link">
                         <span style="background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none;" class="material-symbols-outlined icon">
                             browse_activity
@@ -135,7 +134,7 @@
                         <span class="text">roll</span>
                     </a>
                 </li>
-                <li class="list">
+                <li id="crtpg" class="list">
                     <a href="#" class="centered-link">
                         <span style="background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none;" class="material-symbols-outlined icon">
                             add_circle
@@ -143,7 +142,7 @@
                         <span class="text">Create</span>
                     </a>
                 </li>
-                <li class="list">
+                <li id="chtpg" class="list">
                     <a href="#" class="centered-link">
                         <span style="background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none;" class="material-symbols-outlined icon">
                             chat
@@ -151,7 +150,7 @@
                         <span class="text">Chat</span>
                     </a>
                 </li>
-                <li class="list">
+                <li id="prfpg" class="list">
                     <a href="#" onclick="chp('mnp', 'Mr.Tez-SkroyTivra.html')" class="centered-link">
                         <span style="background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none;" class="material-symbols-outlined icon">
                             account_circle
@@ -209,6 +208,9 @@
             }
 
             // Initial position set on window load
+            if (window.location.hash === '#follow-Mr.Tez.html') {
+                document.getElementById("mnp").src="follow-Mr.Tez.html"
+                }
             setPosition();
 
             // Adjust position on click
@@ -230,6 +232,13 @@
             } else {
                 console.error('Iframe with ID ' + iframeId + ' not found');
             }
+        }
+    </script>
+    <script>
+        function clssinplyt() {
+            const nrml=document.getElementById("footr");
+            document.getElementById("mnp").src="home.html";
+            nrml.style.zIndex = 1;
         }
     </script>
 </html>
