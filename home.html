@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="koXcrjiby1HlO4clAbEJIVAwTxUCsM9PuT83n-UoZ50" />
+    <meta name="google-site-verification" content="tUgqgeqfC4OfM5cCK67HXkupP_RZM4-1102U9kgnPOY" />
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv='content-language' content='en-gb'>
+    <title>SkroyTivra</title>
+    <link rel="shortcut icon" type="x-icon" href="https://imagetolink.com/ib/4eXyhI68Lp.png">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+      a, span, button, [onclick], #searchBar  {
+        -webkit-tap-highlight-color: transparent;
+    }
+    .rotated {
+        transform: rotate(-45deg);
+        transition: transform 0.2s ease-in-out;
+    }
+    .neon-text {
+        background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red);
+        -webkit-background-clip: text; 
+        color: transparent;
+        display: inline-block;
+    }
+    .options {
+        display: flex;
+        flex-direction: column;
+        margin-top: 120px;
+    }
+    </style>
+    <style>
+        .navigation {
+            position: relative;
+        }
+
+    </style>
+</head>
+<body>
+<nav id="nab" style="position: sticky; top: -98px; background-color: rgba(213, 212, 212, 1); padding: 10px; margin: -8px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <img height="50" width="70" src="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725512879/20240904_224906-removebg-preview_j673wb.png" alt="image">
+        <div>
+            <img height="15" width="70" src="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725522389/20240905_131549_ud6wej.jpg" alt="image">
+        </div>
+    </div>
+
+    <ul style="list-style: none; display: flex; gap: 10px;">
+        <!-- Use the image as a link -->
+        <div id="searchBar" style="height: 20px; margin-top: 4px; display: flex; cursor: pointer; padding: 10px 20px; background: transparent; border-radius: 30px; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);" onmouseover="if(window.innerWidth >= 702){si.style.width='400px'; this.style.height='25px';} else {si.style.width='110px'; fm.style.width='0';} this.style.background= 'white';  mic.style.width='auto';" onmouseout="si.style.width='0'; this.style.background= 'transparent'; this.style.height='20px'; fm.style.width='100%'; mic.style.width='0';">
+            <input id="si" type="text" placeholder="Search..." style="width: 0; outline: none; border: none; font-weight: 500; transition: 0.8s; background: transparent;" >
+            <a href="#">
+                <span style="margin-right: 2px; background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none; margin-top: 4px;" class="material-symbols-outlined">
+                search
+                </span>
+            </a>
+            <a href="#">
+                <span id="mic" onclick="voiceSearch()" style="width: 0; background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none; margin-top: 4px;" class="material-symbols-outlined">
+                mic
+                </span>
+            </a>
+            <a href="#">
+                <span id="ath" style="margin-left: 2px; background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none; margin-top: 4px;" class="material-symbols-outlined">
+                install_desktop
+                </span>
+            </a>
+        </div>
+        <a href="Sp.html">
+            <img id="fm" style="transition: 0.8s;" height="45" width="100%" src="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725522080/20240905_104505-removebg-preview_bymqaz.png" alt="image">
+        </a>
+    </ul>
+</nav>
+<div id="userContainer">
+    <!-- User information will be dynamically added here -->
+</div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script>
+    // Array of user data including small and large image URLs
+    const users = [
+        { 
+            name: "Mr. Tez",
+            ucall: "Hey Tezian's",
+            follow: "follow-Mr.Tez.html",
+            contact: "john@example.com", 
+            liknum: "6", 
+            profImageUrl: "https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725522567/20240905_131903_yrxsmd.jpg", 
+            impImageUrl: "https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725523029/20240905_132634_lukxda.jpg" 
+        },
+        { 
+            name: "Mr. Roy",
+            ucall: "Hey Users",
+            follow: "follow-Mr.Roy.html",
+            contact: "jane@example.com", 
+            liknum: "8", 
+            profImageUrl: "https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725523239/20240905_132817_v5fimv.jpg", 
+            impImageUrl: "https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725523789/20240905_133707_yu3f9s.jpg" 
+        },
+        { 
+            name: "Michael Johnson",
+            ucall: "Hey Users",
+            contact: "michael@example.com", 
+            liknum: "2", 
+            profImageUrl: "https://via.placeholder.com/50", 
+            impImageUrl: "https://via.placeholder.com/300" 
+        },
+        // Add more users as needed
+    ];
+
+    // Function to generate HTML for a single user
+    function generateUserHTML(user) {
+        return `
+            <div>
+                <h1>${user.ucall}</h1>
+                <p>"Here are the way to know about him" :</p>
+                <div style="display: flex; align-items: center;">
+                    <a href="${user.follow}"><img src="${user.profImageUrl}" alt="${user.name}" style="width: 50px; height: 50px;"></a>
+                    <details style="margin-left: 10px;">
+                        <summary>${user.name}</summary>
+                        <a href="https://in.linkedin.com/in/rudra-tez-79b059232?utm_source=share&utm_medium=member_mweb&utm_campaign=share_via&utm_content=profile">@rudra Tez</a>
+                        <a href="https://www.instagram.com/rudra_tez?utm_source=ig_web_button_share_sheet&igsh=ODdmZWVhMTFiMw==">@rudra-tez</a>
+                        <a href="https://www.facebook.com/tejsingh.kushwaha.771?mibextid=ZbWKwL">@Tez Singh</a>
+                        <a href="https://youtube.com/@rudra_tez?si=RXkSOr6Q5580rCDe">@rudra-tez</a>
+                    </details>
+                </div>
+                <br>
+                <div style="width: 100%; position: relative; display: block; background-color: #d3d3d3;">
+                    <img style="display: block; width: 100%; max-height: 20%;" src="${user.impImageUrl}" alt="image">
+                    <div style="position: absolute; bottom: 10px; right: 10px; display: flex; flex-direction: column; gap: 10px;" class="options">
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                        <span class="neon-text" style="color: white; font-size: 1.5em;">
+                            <ion-icon onclick="liked(this)" name="thumbs-up-outline" style="color: white; shadow: 2px 2px 4px rgba(0, 0, 0, 1);"></ion-icon>
+                        </span>
+                        <span name="lkno" style="color: white; font-size: 0.75em;">${user.liknum}</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <span class="icon" style="color: white; font-size: 1.5em;">
+                            <ion-icon onclick="liked(this)" name="thumbs-down-outline" style="color: white; shadow: 2px 2px 4px rgba(0, 0, 0, 1);"></ion-icon>
+                        </span>
+                        <span style="color: white; font-size: 0.75em;">dislike</span>
+                    </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                        <span class="neon-text" style="color: white; font-size: 1.5em;">
+                            <ion-icon name="chatbox-ellipses-outline" style="color: white; shadow: 2px 2px 4px rgba(0, 0, 0, 1);"></ion-icon>
+                        </span>
+                        <span style="color: white; font-size: 0.75em;">102</span>
+                    </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                        <span class="neon-text" style="color: white; font-size: 1.5em;">
+                            <ion-icon name="arrow-redo-outline" style="color: white; shadow: 2px 2px 4px rgba(0, 0, 0, 1);"></ion-icon>
+                        </span>
+                        <span style="color: white; font-size: 0.75em;">share</span>
+                    </div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <details style="list-style: none;">
+                        <summary style="list-style: none;"><h2>Know more about...</h2></summary>
+                        <p padding-left="12px">Nothing to show yet!!!..</p>
+                    </details>
+                </div>
+                <hr style="width: 100ew; margin-left: -10px; margin-top: -1px; background-color: rgba(213, 212, 212, 1); height: 2px;">
+            </div>
+        `;
+    }
+
+    // Function to add user information to the DOM
+    function addUserInformation(container, users) {
+        users.forEach(user => {
+            const userHTML = generateUserHTML(user);
+            container.insertAdjacentHTML('beforeend', userHTML);
+        });
+    }
+
+    // Get reference to the user container
+    const userContainer = document.getElementById('userContainer');
+
+    // Add user information to the DOM
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+    shuffle(users);
+    addUserInformation(userContainer, users);
+</script>
+<script>
+    function voiceSearch() {
+        var micElement = document.getElementById("mic");
+        var micWidth = micElement.offsetWidth;
+        console.log("Mic width:", micWidth);
+        var searchInput = document.getElementById("si");
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-GB";
+        recognition.start();
+        recognition.onresult = function(event){
+            searchInput.value = searchInput.value + event.results[0][0].transcript;
+        }
+    }
+</script>
+    <div style="background-color: grey; height: 60px; min-width: 350px; display: flex; justify-content: center; align-items: center; border-radius: 10px; margin-left: -3.2px;" class="navigation"></div>
+</body>
+    <script>
+    function srchpg(newSrc) {
+        window.parent.chp('mnp', newSrc);
+    }
+    function liked(likedobj) {
+        const parentContainer = likedobj.closest('.options');
+
+        // Find the thumbs-up and thumbs-down icons within the same container
+        const thumbsUpIcon = parentContainer.querySelector('[name="thumbs-up-outline"]');
+        const thumbsDownIcon = parentContainer.querySelector('[name="thumbs-down-outline"]');
+        const likno = parentContainer.querySelector('[name="lkno"]');
+        if (likedobj === thumbsUpIcon) {
+            // Toggle thumbs-up icon color
+            if (thumbsUpIcon.style.color === 'cyan') {
+                thumbsUpIcon.style.color = 'white';
+                if (parseInt(likno.innerText) !== 0) {
+                    likno.innerText = (parseInt(likno.innerText) - 1).toString();
+                }
+            } else {
+                thumbsUpIcon.style.color = 'cyan';
+                thumbsDownIcon.style.color = 'white';
+                likno.innerText = (parseInt(likno.innerText) + 1).toString();
+            }
+        } else if (likedobj === thumbsDownIcon) {
+            // Toggle thumbs-down icon color
+            if (thumbsDownIcon.style.color === 'cyan') {
+                thumbsDownIcon.style.color = 'white';
+            } else {
+                thumbsDownIcon.style.color = 'cyan';
+                if (parseInt(likno.innerText) !== 0 && thumbsUpIcon.style.color === 'cyan') {
+                    likno.innerText = (parseInt(likno.innerText) - 1).toString();
+                }
+                thumbsUpIcon.style.color = 'white';
+            }
+        }
+        
+        likedobj.classList.add('rotated');
+        setTimeout(function() {
+                likedobj.classList.remove('rotated');
+            }, 200); // 3 seconds delay
+    }
+</script>
+
+</html>
