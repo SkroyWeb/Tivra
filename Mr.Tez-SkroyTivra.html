@@ -6,8 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mr. Tꍟʐ - SkroyTivra</title>
   <script>
-      let profilepic="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1730125667/swzbqwuubfowyir8kemy.jpg";
-      let bannerpic="https://imagetolink.com/ib/E2NyU0k5Uh.jpg";
+      profilepic=localStorage.getItem("profilePicUrl");
+      if(profilepic) {
+          
+      } else{
+          profilepic="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1730125667/swzbqwuubfowyir8kemy.jpg";
+      }
+      bannerpic=localStorage.getItem("bannerPicUrl");
+      if(bannerpic) {
+
+      } else{
+          bannerpic="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725523029/20240905_132634_lukxda.jpg";
+      }
   </script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <style>
@@ -61,9 +71,9 @@
 <body>
     <nav style="background-color: rgba(169, 169, 169, 0.5); padding: 10px; margin: -8px; display: flex; justify-content: space-between; align-items: center;">
         <div>
-            <img height="50" width="70" src="https://imagetolink.com/ib/XCLh5h5Zmp.png" alt="image">
+            <img height="50" width="70" src="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725512879/20240904_224906-removebg-preview_j673wb.png" alt="image">
             <div>
-                <img height="15" width="70" src="https://imagetolink.com/ib/74wXFfamok.jpg" alt="image">
+                <img height="15" width="70" src="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725522389/20240905_131549_ud6wej.jpg" alt="image">
             </div>
         </div>
         <ul style="list-style: none; display: flex; gap: 10px;">
@@ -295,7 +305,7 @@ gdbdghotala</pre>
               saveChangesButton.disabled = false;
               saveChangesButton.style.display = 'none';
               closeProfileOptions();
-          }, 2000);
+          }, 5000);
       }
       
         function changeUsername() {
@@ -357,11 +367,17 @@ gdbdghotala</pre>
                   }
               );
               const videoUrl = response.data.secure_url;
+              if(fileInputId==="profileUploader") {
+                  localStorage.setItem('profilePicUrl', videoUrl);
+              } else if(fileInputId==="bannerUploader") {
+                  localStorage.setItem('bannerPicUrl', videoUrl);
+              }
+              
               
               // Retrieve the URL of the uploaded file
               
           } catch (error) {
-              ctk.innerText="savage"
+              ctk.innerText="save error"
           }
           }
 
