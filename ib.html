@@ -3,24 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Uploader</title>
+    <title>Tez Institute</title>
     <script>
-        let urp = "https://res.cloudinary.com/dl3ga7ifw/image/upload/v1719391910/oquaoopodubhps21of5s.png";
+        let defaultImage = "https://res.cloudinary.com/dl3ga7ifw/image/upload/v1719391910/oquaoopodubhps21of5s.png";
     </script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            text-align: center;
+            background: url('https://i.ibb.co/BkvSkr6/Screenshot-20250312-160048-2.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
         }
-        #result {
-            margin-top: 20px;
+        .container {
+    width: 60%;
+    margin: 50px auto;
+    background: url('https://images.unsplash.com/photo-1600195077901-90888ad2a302') no-repeat center;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+        .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    border-radius: 10px;
+    z-index: 1;
+}
+
+        .container * {
+    position: relative;
+    z-index: 2; 
+}
+containerinput, textarea, button {
+            width: 90%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
         }
         #progressBar {
-            width: 80%;
+            width: 90%;
             height: 20px;
             background-color: #f1f1f1;
-            margin-top: 10px;
-            display: none; /* Initially hidden */
+            margin: 10px auto;
+            display: none;
+            border-radius: 5px;
+            overflow: hidden;
         }
         #progress {
             width: 0%;
@@ -30,79 +74,139 @@
             line-height: 20px;
             color: white;
         }
+        .uploaded-files {
+            margin-top: 20px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .uploaded-files ul {
+            list-style: none;
+            padding: 0;
+        }
+        .uploaded-files ul li {
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .uploaded-files ul li a {
+            color: white;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <h1>Upload Video</h1>
-    <form id="uploadForm">
-        <input type="file" id="videoFile" name="file" required>
-        <input type="text" id="title" name="title" placeholder="Enter video title">
-        <textarea id="description" name="description" placeholder="Enter video description"></textarea>
-        <button type="submit">Upload</button>
-    </form>
-    
-    <div id="progressBar">
-        <div id="progress">0%</div>
+
+    <div class="container">
+        <h1>Upload your Assignment</h1>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" required>
+            <input type="text" id="title" placeholder="Enter title (optional)">
+            <textarea id="description" placeholder="Enter description (optional)"></textarea>
+            <button type="submit">Upload</button>
+        </form>
+
+        <div id="progressBar">
+            <div id="progress">0%</div>
+        </div>
+
+        <h3>Last Uploaded File:</h3>
+        <img id="preview" src="" width="200px" style="display:none;">
+        <p id="lastFile"></p>
+
+        <div class="uploaded-files">
+            <h3>Uploaded Documents:</h3>
+            <ul id="fileList"></ul>
+        </div>
     </div>
-    <div id="result"></div>
-    <img id="prof" src="" width="200px">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
-        const display = document.getElementById('prof');
+        const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dl3ga7ifw/upload";
+        const CLOUDINARY_UPLOAD_PRESET = "Skroy_4002"; // Change this to your Cloudinary preset
 
-        // Load the image URL from localStorage if it exists
-        const storedImageUrl = localStorage.getItem('temporaryImageUrl');
-        if (storedImageUrl) {
-            display.src = storedImageUrl;
+        const fileInput = document.getElementById("fileInput");
+        const preview = document.getElementById("preview");
+        const progressBar = document.getElementById("progressBar");
+        const progress = document.getElementById("progress");
+        const lastFile = document.getElementById("lastFile");
+        const fileList = document.getElementById("fileList");
+
+        // Load last uploaded file from localStorage
+        const storedFile = JSON.parse(localStorage.getItem("lastUploadedFile"));
+        if (storedFile) {
+            if (storedFile.type.startsWith("image") || storedFile.type.startsWith("video")) {
+                preview.src = storedFile.url;
+                preview.style.display = "block";
+            } else {
+                lastFile.innerHTML = `<a href="${storedFile.url}" target="_blank">${storedFile.name}</a>`;
+            }
         } else {
-            display.src = urp;
+            preview.src = defaultImage;
+            preview.style.display = "block";
         }
 
-        const form = document.getElementById('uploadForm');
-        const progressBar = document.getElementById('progressBar');
-        const progress = document.getElementById('progress');
-
-        form.addEventListener('submit', async (e) => {
+        document.getElementById("uploadForm").addEventListener("submit", async (e) => {
             e.preventDefault();
-            const fileField = document.getElementById('videoFile').files[0];
-            const title = document.getElementById('title').value || "profilepic";
-            const description = document.getElementById('description').value;
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Please select a file!");
+                return;
+            }
 
             const formData = new FormData();
-            formData.append('file', fileField);
-            formData.append('upload_preset', 'Skroy_4002'); // Change this to your Cloudinary upload preset
-            formData.append('context', `title=${title}|description=${description}`);
+            formData.append("file", file);
+            formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+            progressBar.style.display = "block";
 
             try {
-                progressBar.style.display = 'block'; // Show progress bar
+                const response = await axios.post(CLOUDINARY_URL, formData, {
+                    headers: { "Content-Type": "multipart/form-data" },
+                    onUploadProgress: (progressEvent) => {
+                        const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                        progress.style.width = percent + "%";
+                        progress.innerText = percent + "%";
+                    },
+                });
 
-                const response = await axios.post(
-                    'https://api.cloudinary.com/v1_1/dl3ga7ifw/upload',
-                    formData,
-                    {
-                        headers: { 'Content-Type': 'multipart/form-data' },
-                        onUploadProgress: (progressEvent) => {
-                            const { loaded, total } = progressEvent;
-                            const percent = Math.round((loaded * 100) / total);
-                            progress.style.width = percent + '%';
-                            progress.innerText = percent + '%';
-                        }
-                    }
-                );
+                const fileUrl = response.data.secure_url;
+                const fileType = file.type;
 
-                const videoUrl = response.data.secure_url;
-                document.getElementById('result').innerHTML = `<img id="prof" src="${videoUrl}" width="200px">`;
+                let fileData = {
+                    name: file.name,
+                    url: fileUrl,
+                    type: fileType,
+                };
 
-                // Store the new image URL in localStorage
-                localStorage.setItem('temporaryImageUrl', videoUrl);
+                localStorage.setItem("lastUploadedFile", JSON.stringify(fileData));
+
+                if (fileType.startsWith("image") || fileType.startsWith("video")) {
+                    preview.src = fileUrl;
+                    preview.style.display = "block";
+                    lastFile.innerHTML = "";
+                } else {
+                    lastFile.innerHTML = `<a href="${fileUrl}" target="_blank">${file.name}</a>`;
+                    preview.style.display = "none";
+                }
+
+                addToFileList(file.name, fileUrl);
             } catch (error) {
-                console.error('Error uploading the video:', error);
-                document.getElementById('result').innerText = 'Error uploading the video.';
+                console.error("Upload error:", error);
+                alert("Upload failed! Try again.");
             } finally {
-                progressBar.style.display = 'none'; // Hide progress bar
+                progressBar.style.display = "none";
             }
         });
+
+        function addToFileList(name, url) {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `<a href="${url}" target="_blank">${name}</a>`;
+            fileList.appendChild(listItem);
+        }
     </script>
+
 </body>
 </html>
