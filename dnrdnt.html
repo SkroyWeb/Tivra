@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate Food - Select NGO</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f6f9;
+    }
+    h2 {
+      text-align: center;
+      padding: 20px;
+      color: #333;
+    }
+    #map {
+      height: 400px;
+      width: 90%;
+      margin: 0 auto;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+    }
+    #location-info {
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    #ngo-list {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .ngo-item {
+      padding: 12px;
+      margin: 10px 0;
+      background-color: #f9f9f9;
+      border-left: 5px solid #007bff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .ngo-item:hover {
+      background-color: #e6f0ff;
+    }
+    .ngo-item.selected {
+      background-color: #d0ebff;
+      border-left-color: #0056b3;
+    }
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Donate Surplus Food - Mark Location & Choose NGO</h2>
+
+  <div id="map"></div>
+  <p id="location-info">Click on the map to mark your location</p>
+
+  <div id="ngo-list">
+    <h3>Nearby NGOs:</h3>
+    <div id="suggestions"></div>
+  </div>
+
+  <button onclick="confirmDonation()">Confirm Donation</button>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const ngos = [
+      { name: "Helping Hands NGO", lat: 28.7045, lng: 77.1030 },
+      { name: "Food for All Foundation", lat: 28.7058, lng: 77.1100 },
+      { name: "Hunger Relief Organization", lat: 28.7103, lng: 77.1155 },
+      { name: "Care & Share Foundation", lat: 28.7010, lng: 77.0950 },
+      { name: "Feeding Delhi", lat: 28.7099, lng: 77.1080 }
+    ];
+
+    let selectedLocation = null;
+    let selectedNGO = null;
+    let marker = null;
+    let map = L.map("map").setView([28.7041, 77.1025], 13);
+
+    // Custom red icon for NGOs
+    const redIcon = new L.Icon({
+      iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32],
+    });
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    ngos.forEach((ngo) => {
+      L.marker([ngo.lat, ngo.lng], { icon: redIcon })
+        .addTo(map)
+        .bindPopup(`<b>${ngo.name}</b>`);
+    });
+
+    map.on("click", function (e) {
+      if (marker) {
+        map.removeLayer(marker);
+      }
+      selectedLocation = e.latlng;
+      marker = L.marker(e.latlng).addTo(map);
+      document.getElementById("location-info").innerText =
+        `Selected Location: Latitude ${e.latlng.lat.toFixed(4)}, Longitude ${e.latlng.lng.toFixed(4)}`;
+      showNearestNGOs();
+    });
+
+    function getDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = ((lat2 - lat1) * Math.PI) / 180;
+      const dLon = ((lon2 - lon1) * Math.PI) / 180;
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos((lat1 * Math.PI) / 180) *
+          Math.cos((lat2 * Math.PI) / 180) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    }
+
+    function showNearestNGOs() {
+      const suggestionBox = document.getElementById("suggestions");
+      suggestionBox.innerHTML = "";
+
+      const distances = ngos.map((ngo) => {
+        return {
+          ...ngo,
+          distance: getDistance(
+            selectedLocation.lat,
+            selectedLocation.lng,
+            ngo.lat,
+            ngo.lng
+          ),
+        };
+      });
+
+      distances.sort((a, b) => a.distance - b.distance);
+
+      distances.forEach((ngo) => {
+        const div = document.createElement("div");
+        div.classList.add("ngo-item");
+        div.innerText = `${ngo.name} - ${ngo.distance.toFixed(2)} km away`;
+        div.onclick = () => {
+          document.querySelectorAll(".ngo-item").forEach((el) =>
+            el.classList.remove("selected")
+          );
+          div.classList.add("selected");
+          selectedNGO = ngo;
+        };
+        suggestionBox.appendChild(div);
+      });
+    }
+
+    function confirmDonation() {
+      if (!selectedLocation || !selectedNGO) {
+        alert("Please select a location and an NGO before confirming.");
+        return;
+      }
+      alert(
+        `Thank you for donating!\nLocation: ${selectedLocation.lat.toFixed(
+          4
+        )}, ${selectedLocation.lng.toFixed(4)}\nNGO Selected: ${selectedNGO.name}`
+      );
+    }
+  </script>
+</body>
+</html>
