@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .screen-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            padding: 20px;
+            border-radius: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90%;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        /* Android-like screen */
+        iframe {
+            width: 100%;
+            max-width: 360px;
+            height: 85%;
+            border-radius: 25px;
+            border: 8px solid black;
+            background: #fff; /* White background inside the screen */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav id="nab" style="position: sticky; top: -98px; background-color: rgba(213, 212, 212, 1); padding: 10px; margin: -8px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <img height="50" width="70" src="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725512879/20240904_224906-removebg-preview_j673wb.png" alt="image">
+            <div>
+                <img height="15" width="70" src="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725522389/20240905_131549_ud6wej.jpg" alt="image">
+            </div>
+        </div>
+
+        <ul style="list-style: none; display: flex; gap: 10px;">
+            <!-- Use the image as a link -->
+            <div id="searchBar" style="height: 20px; margin-top: 4px; display: flex; cursor: pointer; padding: 10px 20px; background: transparent; border-radius: 30px; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);" onmouseover="if(window.innerWidth >= 702){si.style.width='400px'; this.style.height='25px';} else {si.style.width='110px'; fm.style.width='0';} this.style.background= 'white';  mic.style.width='auto';" onmouseout="si.style.width='0'; this.style.background= 'transparent'; this.style.height='20px'; fm.style.width='100%'; mic.style.width='0';">
+                <input id="si" type="text" placeholder="Search..." style="width: 0; outline: none; border: none; font-weight: 500; transition: 0.8s; background: transparent;" >
+                <a href="#">
+                    <span style="margin-right: 2px; background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none; margin-top: 4px;" class="material-symbols-outlined">
+                    search
+                    </span>
+                </a>
+                <a href="#">
+                    <span id="mic" onclick="voiceSearch()" style="width: 0; background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none; margin-top: 4px;" class="material-symbols-outlined">
+                    mic
+                    </span>
+                </a>
+                <a href="#">
+                    <span id="ath" style="margin-left: 2px; background-image: linear-gradient(to right, violet, indigo, blue, green, orange, red); -webkit-background-clip: text; color: transparent; text-decoration: none; margin-top: 4px;" class="material-symbols-outlined">
+                    install_desktop
+                    </span>
+                </a>
+            </div>
+            <a href="Sp.html">
+                <img id="fm" style="transition: 0.8s;" height="45" width="100%" src="https://res.cloudinary.com/dl3ga7ifw/image/upload/v1725522080/20240905_104505-removebg-preview_bymqaz.png" alt="image">
+            </a>
+        </ul>
+    </nav>
+    <div id="contentSelector" style="display: flex; align-items: center; gap: 10px; padding: 
+10px 0px;">
+        <select id="contentLabel" onchange="handleSelectionChange(this.value)" style="font-weight: 700; font-size: 22px; padding: 5px 5px; background: linear-gradient(to right, #6a11cb, #2575fc); -webkit-background-clip: text; color: transparent; text-transform: uppercase; letter-spacing: 1px; display: block; width: fit-content; border-bottom: 3px solid #2575fc; border-radius: 5%; border-right: none;">
+            <option value="Lvid" style="color: black;">Lvid</option>
+            <option value="Moment" style="color: black;">Moment</option>
+            <option value="Role" style="color: black;">Role</option>
+            <option value="Cancel" style="color: black;">Cancel</option>
+        </select>
+        <label id="contentLabel" style="font-weight: 700; font-size: 40px; padding-bottom: 5px; background: linear-gradient(to right, #6a11cb, #2575fc); -webkit-background-clip: text; color: transparent; text-transform: uppercase; letter-spacing: 1px; display: block; width: fit-content;">
+            :
+        </label>
+    </div>
+    <div class="screen-container">
+        <iframe id="androidScreen" src="https://via.placeholder.com/360x640?text=Coming+Soonhttps://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" frameborder="0"></iframe>
+    </div>
+</body>
+<script>
+    function voiceSearch() {
+        var micElement = document.getElementById("mic");
+        var micWidth = micElement.offsetWidth;
+        console.log("Mic width:", micWidth);
+        var searchInput = document.getElementById("si");
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-GB";
+        recognition.start();
+        recognition.onresult = function(event){
+            searchInput.value = searchInput.value + event.results[0][0].transcript;
+        }
+    }
+</script>
+<script>
+    function handleSelectionChange(selectedValue) {
+        var contentSelector = document.getElementById("contentSelector");
+        var contentLabel = document.getElementById("contentLabel");
+        if (selectedValue === "Lvid") {
+            
+        } else if (selectedValue === "Moment") {
+            
+        } else if (selectedValue === "Role") {
+            
+        } else if (selectedValue === "Cancel") {
+            
+        }
+    }
+</script>
+</html>
