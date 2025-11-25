@@ -1,211 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
 <title>Physics Orientation Program</title>
-
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
     body {
         margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #0b0f27, #162346);
+        font-family: "Poppins", sans-serif;
+        background: #0a0a0a;
         color: #ffffff;
         overflow-x: hidden;
         position: relative;
-        min-height: 200vh;
     }
 
-    /* MULTI-COLOUR DIWALI LIGHTS */
-    .diya-light {
-        position: absolute;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        opacity: 0.9;
-        pointer-events: none;
-        animation: twinkle 2.3s infinite ease-in-out;
-        box-shadow: 0 0 12px currentColor, 0 0 22px currentColor;
-    }
-
-    /* Twinkle animation */
-    @keyframes twinkle {
-        0% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.9); opacity: 0.3; }
-        100% { transform: scale(1); opacity: 1; }
-    }
-
-    /* Fade-up content animation */
-    .fade-up {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: 0.8s ease;
-    }
-    .fade-up.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    header {
+    h1, h2, h3 {
         text-align: center;
-        padding: 60px 20px;
-        background: linear-gradient(135deg, #0d1433, #1c2d5a);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        position: relative;
-        z-index: 5;
-    }
-
-    header h1 {
-        font-size: 38px;
         font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    header p {
-        font-size: 18px;
-        opacity: 0.85;
     }
 
     .container {
+        width: 90%;
         max-width: 900px;
         margin: auto;
-        padding: 40px 20px;
+        padding-top: 50px;
         position: relative;
-        z-index: 5;
+        z-index: 10;
     }
 
     .section {
-        background: rgba(255, 255, 255, 0.07);
-        padding: 30px;
-        border-radius: 18px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 20px;
+        padding: 25px;
         margin-bottom: 30px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-        transition: transform 0.3s ease;
+        box-shadow: 0 0 20px rgba(255,255,255,0.15);
+        backdrop-filter: blur(6px);
     }
 
-    .section:hover {
-        transform: translateY(-5px);
+    ul { line-height: 1.8; }
+
+    /* DIWALI LIGHT PARTICLES */
+    .light {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: red;
+        box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+        animation: floatUp linear infinite;
+        opacity: 0.9;
+        z-index: 1;
     }
 
-    .section h2 {
-        font-size: 28px;
-        margin-bottom: 18px;
-        font-weight: 600;
-        color: #ffdd6e;
-        text-shadow: 0 0 10px rgba(255, 221, 110, 0.4);
-    }
-
-    .section ul {
-        padding-left: 20px;
-        line-height: 1.8;
-    }
-
-    .section ul li::marker {
-        color: #ffdd6e;
-    }
-
-    footer {
-        text-align: center;
-        padding: 20px;
-        opacity: 0.7;
-        font-size: 14px;
-        margin-bottom: 20px;
-        z-index: 5;
-        position: relative;
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) translateX(0);
+            opacity: 0.8;
+        }
+        100% {
+            transform: translateY(-120vh) translateX(20px);
+            opacity: 0;
+        }
     }
 </style>
 </head>
-
 <body>
-
-<header class="fade-up">
-    <h1>Physics Orientation Program</h1>
-    <p>Designed & Presented by <strong>Satyam Sir</strong></p>
-</header>
 
 <div class="container">
 
-    <div class="section fade-up">
-        <h2>⭐ Course Introduction</h2>
-        <p>Welcome to the One-Week Physics Orientation Program by Satyam Sir…</p>
-        <p>This program removes fear from Day 1.</p>
+    <div class="section">
+        <h1>⭐ Course Introduction (Use in Brochure, Website, or PPT)</h1>
+        <p><b>Welcome to the One-Week Physics Orientation Program by Satyam Sir — a complete kickstart to Class 11 Physics designed to transform beginners into confident, concept-strong learners.</b></p>
+
+        <p>Class 11 Physics is the foundation of all advanced science—whether it’s JEE, NEET, CUET, or Board Exams. Most students struggle in the beginning because Physics suddenly becomes <i>conceptual</i>, <i>mathematical</i>, and <i>application-based</i>.
+        This program is created to remove that fear—right from Day 1.</p>
+
+        <p>Across <b>7 high-energy sessions</b>, students will understand how to study Physics the right way, how to approach numerical problems, how to break down difficult concepts, and how to build a strong base that supports them for the next 2 years.</p>
+
+        <p>Every session is designed to be <b>interactive, practical, visual, and crystal clear</b>, so students don’t just learn Physics—they <i>experience</i> it.</p>
+
+        <p>By the end of the orientation, students will know <b>exactly what to study, how to study, and how to score high</b> using proven techniques that toppers follow.</p>
+
+        <p>This course isn’t just an introduction—<br>
+        it’s your <b>launchpad to becoming a Physics Champion.</b></p>
     </div>
 
-    <div class="section fade-up">
+    <div class="section">
         <h2>⭐ What Makes This Orientation Special</h2>
         <ul>
-            <li>Beginners + Restarters</li>
-            <li>Shortcuts</li>
-            <li>Roadmap</li>
-            <li>Doubt support</li>
+            <li>✔ Designed specially for <b>Class 11 beginners</b> & <b>Restarter</b></li>
+            <li>✔ Simple explanations with real-life examples</li>
+            <li>✔ Smart shortcuts for solving numericals</li>
+            <li>✔ Chapter-wise roadmap for the full year</li>
+            <li>✔ Worksheets + doubt support</li>
+            <li>✔ Motivation & study strategy session</li>
+            <li>✔ Affordable and high-impact learning</li>
         </ul>
     </div>
 
-    <div class="section fade-up">
+    <div class="section">
         <h2>⭐ Outcome of the Program</h2>
         <ul>
-            <li>Clear concepts</li>
-            <li>Numerical confidence</li>
-            <li>Motivation boost</li>
+            <li>Students will have strong conceptual clarity</li>
+            <li>Students will be comfortable with formulas and problem-solving</li>
+            <li>Students will know how to handle Class 11 Physics confidently</li>
+            <li>Students will be motivated and ready for boards & competitive exams</li>
+            <li>Students will feel a mindset shift—from confusion to confidence</li>
         </ul>
     </div>
 
 </div>
 
-<footer>© 2025 Physics Orientation Program</footer>
-
 <script>
-    /* Reveal content */
-    const animatedElements = document.querySelectorAll(".fade-up");
-    function revealOnScroll() {
-        const trigger = window.innerHeight * 0.88;
-        animatedElements.forEach(el => {
-            if (el.getBoundingClientRect().top < trigger) {
-                el.classList.add("show");
-            }
-        });
-    }
-    window.addEventListener("scroll", revealOnScroll);
-    window.addEventListener("load", revealOnScroll);
+    // MULTI-COLOR DIWALI LIGHTS ACROSS FULL PAGE
+    const colors = ["#ff4d4d", "#ff9933", "#ffeb3b", "#7cf542", "#42f5da", "#42a5f5", "#d142f5"];
 
-    /* MULTICOLOUR DIWALI LIGHTS */
-    function createDiwaliLights() {
-        const count = 90;
+    function createLight() {
+        const light = document.createElement("div");
+        light.classList.add("light");
 
-        const colors = [
-            "#ffeb3b",  // bright yellow
-            "#ff9800",  // orange
-            "#ff5722",  // red-orange
-            "#ff4081",  // pink
-            "#9c27b0",  // purple
-            "#03a9f4"   // sky blue
-        ];
+        const size = Math.random() * 6 + 6;
+        light.style.width = size + "px";
+        light.style.height = size + "px";
 
-        for (let i = 0; i < count; i++) {
-            const bulb = document.createElement("div");
-            bulb.classList.add("diya-light");
+        light.style.left = Math.random() * window.innerWidth + "px";
+        light.style.bottom = "-20px";
 
-            const size = Math.random() * 10 + 8; 
-            const x = Math.random() * document.body.scrollWidth;
-            const y = Math.random() * document.body.scrollHeight;
+        light.style.background = colors[Math.floor(Math.random() * colors.length)];
+        light.style.boxShadow = `0 0 12px ${light.style.background}, 0 0 25px ${light.style.background}`;
 
-            bulb.style.width = size + "px";
-            bulb.style.height = size + "px";
-            bulb.style.left = x + "px";
-            bulb.style.top = y + "px";
-            bulb.style.animationDelay = (Math.random() * 3) + "s";
+        light.style.animationDuration = (6 + Math.random() * 6) + "s";
 
-            bulb.style.color = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(light);
 
-            document.body.appendChild(bulb);
-        }
+        setTimeout(() => light.remove(), 12000);
     }
 
-    createDiwaliLights();
+    setInterval(createLight, 120);
 </script>
 
 </body>
