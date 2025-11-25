@@ -18,23 +18,23 @@
         min-height: 200vh;
     }
 
-    /* Diwali Light Particles */
+    /* MULTI-COLOUR DIWALI LIGHTS */
     .diya-light {
         position: absolute;
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
-        background: radial-gradient(circle, #ffe083, #ffbb00, rgba(255, 204, 0, 0.1));
-        box-shadow: 0 0 10px #ffea99, 0 0 20px #ffcf4d;
-        opacity: 0.8;
-        animation: twinkle 2.6s infinite ease-in-out;
+        opacity: 0.9;
         pointer-events: none;
+        animation: twinkle 2.3s infinite ease-in-out;
+        box-shadow: 0 0 12px currentColor, 0 0 22px currentColor;
     }
 
+    /* Twinkle animation */
     @keyframes twinkle {
-        0% { transform: scale(1); opacity: 0.9; }
-        50% { transform: scale(1.6); opacity: 0.3;}
-        100% { transform: scale(1); opacity: 0.9; }
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.9); opacity: 0.3; }
+        100% { transform: scale(1); opacity: 1; }
     }
 
     /* Fade-up content animation */
@@ -114,8 +114,8 @@
         opacity: 0.7;
         font-size: 14px;
         margin-bottom: 20px;
-        position: relative;
         z-index: 5;
+        position: relative;
     }
 </style>
 </head>
@@ -131,23 +131,17 @@
 
     <div class="section fade-up">
         <h2>⭐ Course Introduction</h2>
-        <p>Welcome to the One-Week Physics Orientation Program by Satyam Sir — a complete kickstart to Class 11 Physics designed to transform beginners into confident, concept-strong learners.</p>
-        <p>Class 11 Physics is the foundation… This program removes that fear from Day 1.</p>
-        <p>Across <strong>7 high-energy sessions</strong>, students learn how to study Physics the right way.</p>
-        <p>Every session is <strong>interactive, practical, visual, and crystal clear</strong>.</p>
-        <p>This is your <strong>launchpad to becoming a Physics Champion.</strong></p>
+        <p>Welcome to the One-Week Physics Orientation Program by Satyam Sir…</p>
+        <p>This program removes fear from Day 1.</p>
     </div>
 
     <div class="section fade-up">
         <h2>⭐ What Makes This Orientation Special</h2>
         <ul>
-            <li>Designed for Class 11 beginners & Restarters</li>
-            <li>Simple explanations with real-life examples</li>
-            <li>Shortcuts for numericals</li>
-            <li>Chapter-wise roadmap</li>
-            <li>Worksheets + doubt support</li>
-            <li>Motivation & strategy session</li>
-            <li>Affordable premium learning</li>
+            <li>Beginners + Restarters</li>
+            <li>Shortcuts</li>
+            <li>Roadmap</li>
+            <li>Doubt support</li>
         </ul>
     </div>
 
@@ -155,19 +149,17 @@
         <h2>⭐ Outcome of the Program</h2>
         <ul>
             <li>Clear concepts</li>
-            <li>Confidence in formulas & numericals</li>
-            <li>Better understanding of Class 11 Physics</li>
-            <li>Motivated for boards & competitive exams</li>
-            <li>A mindset shift — from confusion to confidence</li>
+            <li>Numerical confidence</li>
+            <li>Motivation boost</li>
         </ul>
     </div>
 
 </div>
 
-<footer>© 2025 Physics Orientation Program • Premium Learning Experience</footer>
+<footer>© 2025 Physics Orientation Program</footer>
 
 <script>
-    /* Reveal on scroll */
+    /* Reveal content */
     const animatedElements = document.querySelectorAll(".fade-up");
     function revealOnScroll() {
         const trigger = window.innerHeight * 0.88;
@@ -180,26 +172,36 @@
     window.addEventListener("scroll", revealOnScroll);
     window.addEventListener("load", revealOnScroll);
 
-    /* Diwali Lights Generator */
+    /* MULTICOLOUR DIWALI LIGHTS */
     function createDiwaliLights() {
-        const count = 80;  // many lights throughout the page
+        const count = 90;
+
+        const colors = [
+            "#ffeb3b",  // bright yellow
+            "#ff9800",  // orange
+            "#ff5722",  // red-orange
+            "#ff4081",  // pink
+            "#9c27b0",  // purple
+            "#03a9f4"   // sky blue
+        ];
 
         for (let i = 0; i < count; i++) {
-            const light = document.createElement("div");
-            light.classList.add("diya-light");
+            const bulb = document.createElement("div");
+            bulb.classList.add("diya-light");
 
-            const size = Math.random() * 8 + 8; // 8–16px
+            const size = Math.random() * 10 + 8; 
             const x = Math.random() * document.body.scrollWidth;
             const y = Math.random() * document.body.scrollHeight;
 
-            light.style.width = size + "px";
-            light.style.height = size + "px";
-            light.style.left = x + "px";
-            light.style.top = y + "px";
-            light.style.animationDelay = (Math.random() * 3) + "s";
-            light.style.opacity = Math.random() * 0.7 + 0.3;
+            bulb.style.width = size + "px";
+            bulb.style.height = size + "px";
+            bulb.style.left = x + "px";
+            bulb.style.top = y + "px";
+            bulb.style.animationDelay = (Math.random() * 3) + "s";
 
-            document.body.appendChild(light);
+            bulb.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+            document.body.appendChild(bulb);
         }
     }
 
