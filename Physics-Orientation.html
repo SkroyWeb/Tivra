@@ -14,17 +14,24 @@
         background: linear-gradient(135deg, #0b0f27, #162346);
         color: #ffffff;
         overflow-x: hidden;
+        position: relative;
     }
 
-    /* Smooth fade + slide animation */
-    .fade-up {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: 0.8s ease;
+    /* Floating glowing particles */
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,255,255,0));
+        opacity: 0.15;
+        animation: float 12s infinite ease-in-out;
+        pointer-events: none;
+        filter: blur(3px);
     }
-    .fade-up.show {
-        opacity: 1;
-        transform: translateY(0);
+
+    @keyframes float {
+        0% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.15; }
+        50% { transform: translateY(-60px) translateX(20px) scale(1.2); opacity: 0.3; }
+        100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.15; }
     }
 
     header {
@@ -45,10 +52,24 @@
         opacity: 0.85;
     }
 
+    /* fade-up animation */
+    .fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.8s ease;
+    }
+
+    .fade-up.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
     .container {
         max-width: 900px;
         margin: auto;
         padding: 40px 20px;
+        position: relative;
+        z-index: 5;
     }
 
     .section {
@@ -89,11 +110,15 @@
         opacity: 0.7;
         font-size: 14px;
         margin-bottom: 20px;
+        z-index: 5;
+        position: relative;
     }
 </style>
 </head>
 
 <body>
+
+<!-- Floating particles will be injected by JS -->
 
 <header class="fade-up">
     <h1>Physics Orientation Program</h1>
@@ -104,44 +129,34 @@
 
     <div class="section fade-up">
         <h2>⭐ Course Introduction</h2>
-        <p>
-            Welcome to the One-Week Physics Orientation Program by Satyam Sir — a complete kickstart to Class 11 Physics designed to transform beginners into confident, concept-strong learners.
-        </p>
-        <p>
-            Class 11 Physics is the foundation of all advanced science—whether it’s JEE, NEET, CUET, or Board Exams. Most students struggle in the beginning because Physics suddenly becomes <em>conceptual</em>, <em>mathematical</em>, and <em>application-based</em>. This program is created to remove that fear—right from Day 1.
-        </p>
-        <p>
-            Across <strong>7 high-energy sessions</strong>, students will understand how to study Physics the right way, how to approach numerical problems, how to break down difficult concepts, and how to build a strong base that supports them for the next 2 years.
-        </p>
-        <p>
-            Every session is designed to be <strong>interactive, practical, visual, and crystal clear</strong>, so students don’t just learn Physics—they <em>experience</em> it.
-        </p>
-        <p>
-            This course isn’t just an introduction—it's your <strong>launchpad to becoming a Physics Champion.</strong>
-        </p>
+        <p>Welcome to the One-Week Physics Orientation Program by Satyam Sir — a complete kickstart to Class 11 Physics designed to transform beginners into confident, concept-strong learners.</p>
+        <p>Class 11 Physics is the foundation of all advanced science—whether it’s JEE, NEET, CUET, or Board Exams… This program is created to remove that fear from Day 1.</p>
+        <p>Across <strong>7 high-energy sessions</strong>, students will learn to study Physics the right way.</p>
+        <p>Every session is <strong>interactive, practical, visual, and crystal clear</strong>.</p>
+        <p>This course is your <strong>launchpad to becoming a Physics Champion.</strong></p>
     </div>
 
     <div class="section fade-up">
         <h2>⭐ What Makes This Orientation Special</h2>
         <ul>
-            <li>Designed specially for Class 11 beginners & Restarter</li>
+            <li>Designed for Class 11 beginners & Restarters</li>
             <li>Simple explanations with real-life examples</li>
-            <li>Smart shortcuts for solving numericals</li>
-            <li>Chapter-wise roadmap for the full year</li>
+            <li>Shortcuts for numericals</li>
+            <li>Chapter-wise roadmap</li>
             <li>Worksheets + doubt support</li>
-            <li>Motivation & study strategy session</li>
-            <li>Affordable and high-impact learning</li>
+            <li>Motivation & strategy session</li>
+            <li>Affordable premium learning</li>
         </ul>
     </div>
 
     <div class="section fade-up">
         <h2>⭐ Outcome of the Program</h2>
         <ul>
-            <li>Students will have strong conceptual clarity</li>
-            <li>Students will be comfortable with formulas and problem-solving</li>
-            <li>Students will know how to handle Class 11 Physics confidently</li>
-            <li>Students will be motivated and ready for boards & competitive exams</li>
-            <li>Students will feel a mindset shift—from confusion to confidence</li>
+            <li>Clear concepts</li>
+            <li>Confidence in formulas & numericals</li>
+            <li>Better understanding of Class 11 Physics</li>
+            <li>Motivated for boards & competitive exams</li>
+            <li>A mindset shift — from confusion to confidence</li>
         </ul>
     </div>
 
@@ -150,12 +165,11 @@
 <footer>© 2025 Physics Orientation Program • Premium Learning Experience</footer>
 
 <script>
-    // Reveal on scroll animation
+    /* Reveal on Scroll */
     const elements = document.querySelectorAll(".fade-up");
 
     function revealOnScroll() {
         const triggerBottom = window.innerHeight * 0.88;
-
         elements.forEach(el => {
             const top = el.getBoundingClientRect().top;
             if (top < triggerBottom) el.classList.add("show");
@@ -164,6 +178,31 @@
 
     window.addEventListener("scroll", revealOnScroll);
     window.addEventListener("load", revealOnScroll);
+
+    /* Create floating particles */
+    function createParticles() {
+        const total = 20;
+
+        for (let i = 0; i < total; i++) {
+            const p = document.createElement("div");
+            p.classList.add("particle");
+
+            const size = Math.random() * 40 + 20;
+            const posX = Math.random() * window.innerWidth;
+            const posY = Math.random() * window.innerHeight;
+
+            p.style.width = size + "px";
+            p.style.height = size + "px";
+            p.style.left = posX + "px";
+            p.style.top = posY + "px";
+            p.style.animationDelay = `${Math.random() * 10}s`;
+            p.style.animationDuration = `${10 + Math.random() * 10}s`;
+
+            document.body.appendChild(p);
+        }
+    }
+
+    createParticles();
 </script>
 
 </body>
