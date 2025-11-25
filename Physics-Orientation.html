@@ -1,176 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Physics Orientation Program — TEZ Institute</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Physics Orientation Program</title>
+
 <style>
-    :root {
-        --bg: #041F44;
-        --bg2: #062C5B;
-        --accent: #1FA2FF;
-        --light: #D8EDFF;
-        --white: #ffffff;
-        --glass: rgba(255,255,255,0.06);
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
     body {
         margin: 0;
-        font-family: "Segoe UI", Inter, sans-serif;
-        background: linear-gradient(180deg, var(--bg), var(--bg2));
-        color: var(--light);
-        -webkit-font-smoothing: antialiased;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #0b0f27, #162346);
+        color: #ffffff;
+        overflow-x: hidden;
     }
 
-    .wrapper {
-        max-width: 1100px;
-        margin: auto;
-        padding: 20px;
-        display: grid;
-        gap: 20px;
-        grid-template-columns: 420px 1fr;
+    /* Smooth fade + slide animation */
+    .fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.8s ease;
+    }
+    .fade-up.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    /* Poster Section */
-    .poster-box {
-        background: var(--glass);
-        padding: 15px;
-        border-radius: 14px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    header {
+        text-align: center;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #0d1433, #1c2d5a);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .poster-box img {
-        border-radius: 12px;
-        width: 100%;
-        height: auto;
-        border: 3px solid rgba(255,255,255,0.05);
-    }
-
-    /* Content Section */
-    .content-box {
-        background: var(--glass);
-        padding: 25px;
-        border-radius: 14px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    }
-
-    h1 {
-        color: var(--white);
-        margin-top: 0;
-        font-size: 28px;
-    }
-
-    p {
-        line-height: 1.6;
-        font-size: 15px;
-    }
-
-    .section-title {
-        margin-top: 22px;
-        color: var(--white);
-        font-size: 20px;
-        font-weight: 600;
-    }
-
-    ul {
-        margin: 10px 0 0 20px;
-    }
-
-    li {
-        margin-bottom: 8px;
-    }
-
-    /* CTA Button */
-    .cta-btn {
-        margin-top: 24px;
-        background: linear-gradient(90deg, var(--accent), #006ecd);
-        padding: 12px 20px;
-        border-radius: 10px;
-        display: inline-block;
-        color: white;
-        font-size: 17px;
+    header h1 {
+        font-size: 38px;
         font-weight: 700;
-        text-decoration: none;
-        box-shadow: 0 6px 15px rgba(0,132,255,0.35);
-        transition: 0.2s;
+        margin-bottom: 10px;
     }
 
-    .cta-btn:hover {
-        transform: scale(1.04);
+    header p {
+        font-size: 18px;
+        opacity: 0.85;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 40px 20px;
+    }
+
+    .section {
+        background: rgba(255, 255, 255, 0.07);
+        padding: 30px;
+        border-radius: 18px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+        transform: translateY(-5px);
+    }
+
+    .section h2 {
+        font-size: 28px;
+        margin-bottom: 18px;
+        font-weight: 600;
+        color: #ffdd6e;
+        text-shadow: 0 0 10px rgba(255, 221, 110, 0.4);
+    }
+
+    .section ul {
+        padding-left: 20px;
+        line-height: 1.8;
+    }
+
+    .section ul li::marker {
+        color: #ffdd6e;
     }
 
     footer {
         text-align: center;
-        margin-top: 30px;
-        font-size: 13px;
-        color: #b8dcff;
-    }
-
-    /* Mobile */
-    @media(max-width: 900px) {
-        .wrapper {
-            grid-template-columns: 1fr;
-        }
+        padding: 20px;
+        opacity: 0.7;
+        font-size: 14px;
+        margin-bottom: 20px;
     }
 </style>
 </head>
+
 <body>
 
-<div class="wrapper">
+<header class="fade-up">
+    <h1>Physics Orientation Program</h1>
+    <p>Designed & Presented by <strong>Satyam Sir</strong></p>
+</header>
 
-    <div class="poster-box">
-        <img src="/mnt/data/4f14a121-a2f1-4ccb-ae5d-ca9ce2196682.png" alt="Physics Orientation Program Poster">
+<div class="container">
+
+    <div class="section fade-up">
+        <h2>⭐ Course Introduction</h2>
+        <p>
+            Welcome to the One-Week Physics Orientation Program by Satyam Sir — a complete kickstart to Class 11 Physics designed to transform beginners into confident, concept-strong learners.
+        </p>
+        <p>
+            Class 11 Physics is the foundation of all advanced science—whether it’s JEE, NEET, CUET, or Board Exams. Most students struggle in the beginning because Physics suddenly becomes <em>conceptual</em>, <em>mathematical</em>, and <em>application-based</em>. This program is created to remove that fear—right from Day 1.
+        </p>
+        <p>
+            Across <strong>7 high-energy sessions</strong>, students will understand how to study Physics the right way, how to approach numerical problems, how to break down difficult concepts, and how to build a strong base that supports them for the next 2 years.
+        </p>
+        <p>
+            Every session is designed to be <strong>interactive, practical, visual, and crystal clear</strong>, so students don’t just learn Physics—they <em>experience</em> it.
+        </p>
+        <p>
+            This course isn’t just an introduction—it's your <strong>launchpad to becoming a Physics Champion.</strong>
+        </p>
     </div>
 
-    <div class="content-box">
-        <h1>One-Week Physics Orientation Program</h1>
-
-        <p>
-            Designed for <strong>Class 11 beginners and 11th restarters</strong>, this program helps students regain clarity, rebuild confidence, and restart Physics with the right approach.
-        </p>
-
-        <p>
-            With March exams approaching, many students feel stuck, distracted, or unsure about their concepts.  
-            This orientation program gives them a <strong>fresh restart</strong> and helps them master the topics where they usually get blocked.
-        </p>
-
-        <div class="section-title">What This Program Offers</div>
+    <div class="section fade-up">
+        <h2>⭐ What Makes This Orientation Special</h2>
         <ul>
-            <li>Crystal-clear basics of Class 11 Physics</li>
-            <li>Problem-solving techniques that boost confidence</li>
-            <li>Mindset shift from confusion → clarity</li>
-            <li>Step-by-step approach to numerical solving</li>
-            <li>Visual, practical and interactive sessions</li>
-            <li>Special guidance for exam preparation (March finals)</li>
+            <li>Designed specially for Class 11 beginners & Restarter</li>
+            <li>Simple explanations with real-life examples</li>
+            <li>Smart shortcuts for solving numericals</li>
+            <li>Chapter-wise roadmap for the full year</li>
+            <li>Worksheets + doubt support</li>
+            <li>Motivation & study strategy session</li>
+            <li>Affordable and high-impact learning</li>
         </ul>
-
-        <div class="section-title">Who Should Join?</div>
-        <ul>
-            <li>Students struggling with Class 11 concepts</li>
-            <li>Students who want a fresh restart</li>
-            <li>Students preparing for Boards + competitive exams</li>
-            <li>Students who feel distracted or lost in Physics</li>
-        </ul>
-
-        <div class="section-title">Outcome</div>
-        <ul>
-            <li>Strong foundation for Class 11 & 12</li>
-            <li>Confidence in numerical and concepts</li>
-            <li>Clear roadmap for scoring high</li>
-            <li>Complete clarity of how to study Physics effectively</li>
-        </ul>
-
-        <!-- CTA Button -->
-        <a class="cta-btn" href="https://forms.gle/HU2LiqLfDjyqpbsEA" target="_blank">
-            Register Now — Fill the Form
-        </a>
-
     </div>
+
+    <div class="section fade-up">
+        <h2>⭐ Outcome of the Program</h2>
+        <ul>
+            <li>Students will have strong conceptual clarity</li>
+            <li>Students will be comfortable with formulas and problem-solving</li>
+            <li>Students will know how to handle Class 11 Physics confidently</li>
+            <li>Students will be motivated and ready for boards & competitive exams</li>
+            <li>Students will feel a mindset shift—from confusion to confidence</li>
+        </ul>
+    </div>
+
 </div>
 
-<footer>
-    TEZ Institute — Learn Fast, Learn Smart — Fueling Future
-</footer>
+<footer>© 2025 Physics Orientation Program • Premium Learning Experience</footer>
+
+<script>
+    // Reveal on scroll animation
+    const elements = document.querySelectorAll(".fade-up");
+
+    function revealOnScroll() {
+        const triggerBottom = window.innerHeight * 0.88;
+
+        elements.forEach(el => {
+            const top = el.getBoundingClientRect().top;
+            if (top < triggerBottom) el.classList.add("show");
+        });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+</script>
 
 </body>
 </html>
