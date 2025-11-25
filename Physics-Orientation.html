@@ -1,98 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
 <title>Physics Orientation Program</title>
-
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
     body {
         margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #0b0f27, #162346);
+        font-family: "Poppins", sans-serif;
+        background: #0a0a0a;
         color: #ffffff;
         overflow-x: hidden;
     }
 
-    /* Smooth fade + slide animation */
-    .fade-up {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: 0.8s ease;
-    }
-    .fade-up.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+    /* HEADER */
     header {
         text-align: center;
-        padding: 60px 20px;
-        background: linear-gradient(135deg, #0d1433, #1c2d5a);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        padding: 40px 20px 20px;
+        color: #ffe066;
+        text-shadow: 0 0 10px #ffda44, 0 0 20px #ffda44;
+        animation: fadeUp 1.6s ease forwards;
+        opacity: 0;
     }
-
     header h1 {
-        font-size: 38px;
+        margin: 0;
+        font-size: 2.6rem;
         font-weight: 700;
-        margin-bottom: 10px;
+    }
+    header p {
+        margin-top: 8px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #fff3a3;
     }
 
-    header p {
-        font-size: 18px;
-        opacity: 0.85;
+    @keyframes fadeUp {
+        0% { transform: translateY(20px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
     }
 
     .container {
+        width: 90%;
         max-width: 900px;
         margin: auto;
-        padding: 40px 20px;
+        padding-top: 20px;
+        position: relative;
+        z-index: 10;
     }
 
     .section {
-        background: rgba(255, 255, 255, 0.07);
-        padding: 30px;
-        border-radius: 18px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 20px;
+        padding: 25px;
         margin-bottom: 30px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-        transition: transform 0.3s ease;
+        box-shadow: 0 0 20px rgba(255,255,255,0.15);
+        backdrop-filter: blur(6px);
     }
 
-    .section:hover {
-        transform: translateY(-5px);
+    ul { line-height: 1.8; }
+
+    /* DIWALI LIGHT PARTICLES */
+    .light {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: red;
+        box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+        animation: floatUp linear infinite;
+        opacity: 0.9;
+        z-index: 1;
     }
 
-    .section h2 {
-        font-size: 28px;
-        margin-bottom: 18px;
-        font-weight: 600;
-        color: #ffdd6e;
-        text-shadow: 0 0 10px rgba(255, 221, 110, 0.4);
-    }
-
-    .section ul {
-        padding-left: 20px;
-        line-height: 1.8;
-    }
-
-    .section ul li::marker {
-        color: #ffdd6e;
+    @keyframes floatUp {
+        0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+        100% { transform: translateY(-120vh) translateX(20px); opacity: 0; }
     }
 
     footer {
         text-align: center;
         padding: 20px;
-        opacity: 0.7;
-        font-size: 14px;
-        margin-bottom: 20px;
+        color: #ffd860;
+        opacity: 0.85;
+        font-size: 0.95rem;
+        margin-top: 40px;
+        text-shadow: 0 0 10px #ffda44;
     }
 </style>
 </head>
-
 <body>
 
 <header class="fade-up">
@@ -102,39 +96,38 @@
 
 <div class="container">
 
-    <div class="section fade-up">
-        <h2>⭐ Course Introduction</h2>
-        <p>
-            Welcome to the One-Week Physics Orientation Program by Satyam Sir — a complete kickstart to Class 11 Physics designed to transform beginners into confident, concept-strong learners.
-        </p>
-        <p>
-            Class 11 Physics is the foundation of all advanced science—whether it’s JEE, NEET, CUET, or Board Exams. Most students struggle in the beginning because Physics suddenly becomes <em>conceptual</em>, <em>mathematical</em>, and <em>application-based</em>. This program is created to remove that fear—right from Day 1.
-        </p>
-        <p>
-            Across <strong>7 high-energy sessions</strong>, students will understand how to study Physics the right way, how to approach numerical problems, how to break down difficult concepts, and how to build a strong base that supports them for the next 2 years.
-        </p>
-        <p>
-            Every session is designed to be <strong>interactive, practical, visual, and crystal clear</strong>, so students don’t just learn Physics—they <em>experience</em> it.
-        </p>
-        <p>
-            This course isn’t just an introduction—it's your <strong>launchpad to becoming a Physics Champion.</strong>
-        </p>
+    <div class="section">
+        <h1>⭐ Course Introduction</h1>
+
+        <p><b>Welcome to the One-Week Physics Orientation Program by Satyam Sir — a complete kickstart to Class 11 Physics designed to transform beginners into confident, concept-strong learners.</b></p>
+
+        <p>Class 11 Physics is the foundation of all advanced science—whether it’s JEE, NEET, CUET, or Board Exams. Most students struggle in the beginning because Physics suddenly becomes <i>conceptual</i>, <i>mathematical</i>, and <i>application-based</i>.
+        This program is created to remove that fear—right from Day 1.</p>
+
+        <p>Across <b>7 high-energy sessions</b>, students will understand how to study Physics the right way, how to approach numerical problems, how to break down difficult concepts, and how to build a strong base that supports them for the next 2 years.</p>
+
+        <p>Every session is designed to be <b>interactive, practical, visual, and crystal clear</b>, so students don’t just learn Physics—they <i>experience</i> it.</p>
+
+        <p>By the end of the orientation, students will know <b>exactly what to study, how to study, and how to score high</b> using proven techniques that toppers follow.</p>
+
+        <p>This course isn’t just an introduction—<br>
+        it’s your <b>launchpad to becoming a Physics Champion.</b></p>
     </div>
 
-    <div class="section fade-up">
+    <div class="section">
         <h2>⭐ What Makes This Orientation Special</h2>
         <ul>
-            <li>Designed specially for Class 11 beginners & Restarter</li>
-            <li>Simple explanations with real-life examples</li>
-            <li>Smart shortcuts for solving numericals</li>
-            <li>Chapter-wise roadmap for the full year</li>
-            <li>Worksheets + doubt support</li>
-            <li>Motivation & study strategy session</li>
-            <li>Affordable and high-impact learning</li>
+            <li>✔ Designed specially for <b>Class 11 beginners</b> & <b>Restarter</b></li>
+            <li>✔ Simple explanations with real-life examples</li>
+            <li>✔ Smart shortcuts for solving numericals</li>
+            <li>✔ Chapter-wise roadmap for the full year</li>
+            <li>✔ Worksheets + doubt support</li>
+            <li>✔ Motivation & study strategy session</li>
+            <li>✔ Affordable and high-impact learning</li>
         </ul>
     </div>
 
-    <div class="section fade-up">
+    <div class="section">
         <h2>⭐ Outcome of the Program</h2>
         <ul>
             <li>Students will have strong conceptual clarity</li>
@@ -147,23 +140,36 @@
 
 </div>
 
-<footer>© 2025 Physics Orientation Program • Premium Learning Experience</footer>
+<footer>
+    © 2026 Physics Orientation Program • Premium Learning Experience
+</footer>
 
 <script>
-    // Reveal on scroll animation
-    const elements = document.querySelectorAll(".fade-up");
+    // MULTI-COLOR DIWALI LIGHTS ACROSS FULL PAGE
+    const colors = ["#ff4d4d", "#ff9933", "#ffeb3b", "#7cf542", "#42f5da", "#42a5f5", "#d142f5"];
 
-    function revealOnScroll() {
-        const triggerBottom = window.innerHeight * 0.88;
+    function createLight() {
+        const light = document.createElement("div");
+        light.classList.add("light");
 
-        elements.forEach(el => {
-            const top = el.getBoundingClientRect().top;
-            if (top < triggerBottom) el.classList.add("show");
-        });
+        const size = Math.random() * 6 + 6;
+        light.style.width = size + "px";
+        light.style.height = size + "px";
+
+        light.style.left = Math.random() * window.innerWidth + "px";
+        light.style.bottom = "-20px";
+
+        light.style.background = colors[Math.floor(Math.random() * colors.length)];
+        light.style.boxShadow = `0 0 12px ${light.style.background}, 0 0 25px ${light.style.background}`;
+
+        light.style.animationDuration = (6 + Math.random() * 6) + "s";
+
+        document.body.appendChild(light);
+
+        setTimeout(() => light.remove(), 12000);
     }
 
-    window.addEventListener("scroll", revealOnScroll);
-    window.addEventListener("load", revealOnScroll);
+    setInterval(createLight, 120);
 </script>
 
 </body>
