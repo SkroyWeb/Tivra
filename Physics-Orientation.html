@@ -131,6 +131,8 @@
     
     .image-wrapper img {
         width: 100%;
+        border-radius: 20px;
+        height: 300px;
         height: auto;
         display: block;
         object-fit: cover; /* keeps it inside without stretching */
@@ -138,9 +140,12 @@
     
     .overlay-btn {
         position: absolute;
-        bottom: 20px;     /* distance from bottom of image */
-        right: 20px;      /* distance from right of image */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         z-index: 5;
+        box-shadow: 0 0 20px rgba(255,255,255,0.15);
+        backdrop-filter: blur(6px);
     }
 
     
