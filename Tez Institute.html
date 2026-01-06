@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tez Institute Analytical Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#0f172a;color:#e5e7eb;}
+header{padding:20px;text-align:center;background:linear-gradient(135deg,#f43f5e,#f97316,#facc15);color:#020617;}
+header h1{font-size:2em;}
+header p{font-size:1em;opacity:0.9;}
+.container{max-width:1200px;margin:auto;padding:20px}
+.card{background:#020617;border-radius:16px;padding:20px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,0.4);} 
+.slider{display:flex;gap:15px;overflow-x:auto}
+.student-row{min-width:230px;padding:15px;border-radius:14px;background:#1e293b;cursor:pointer;transition:0.3s;}
+.student-row:hover{background:#f97316}
+.student-row.active{outline:2px solid #38bdf8}
+.student-row.topper{background:linear-gradient(135deg,#facc15,#ca8a04);color:#020617;font-weight:600;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.subject{display:flex;justify-content:space-between;margin:8px 0}
+.improve{background:#111827;padding:10px;border-radius:10px;margin-bottom:10px}
+.detail{display:none;margin-top:8px;font-size:14px;color:#cbd5f5}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+select{padding:10px;border-radius:10px;border:none;background:#1e293b;color:white;font-size:16px;margin-bottom:15px}
+</style>
+</head>
+<body>
+<header>
+<h1>📈 Tez Institute Analytical Dashboard</h1>
+<p>Rank based • Interactive • Visual</p>
+</header>
+<div class="container">
+<div class="card">
+<h2>🏆 Students by Rank</h2>
+<select id="rankOption"></select>
+<div class="slider" id="slider"></div>
+</div>
+<div class="grid">
+<div class="card">
+<h2>📊 Score Distribution</h2>
+<canvas id="pieChart" height="300"></canvas>
+</div>
+<div class="card">
+<h2>📘 Improvement Analysis</h2>
+<div id="details"></div>
+</div>
+</div>
+</div>
+<script>
+const students=[
+ {name:'Anuj-10th', marks:{Maths:31, Science:25, SST:0, English:0}, 'Last Test-Sci.(80)':{Maths:0, Science:25, SST:0, English:0}, '03/01/26-Math(40)': {Maths:31, Science:0, SST:0, English:0}},
+ {name:'Naveen-10th', marks:{Maths:9, Science:19, SST:0, English:0}, 'Last Test-Sci.(80)':{Maths:0, Science:19, SST:0, English:0}, '03/01/26-Math(40)': {Maths:9, Science:0, SST:0, English:0}},
+ {name:'Shubham-10th', marks:{Maths:6, Science:0, SST:0, English:0}, 'Last Test-Sci.(80)':{Maths:0, Science:0, SST:0, English:0}, '03/01/26-Math(40)': {Maths:6, Science:0, SST:0, English:0}},
+ {name:'Naitik-10th', marks:{Maths:10, Science:13, SST:0, English:0}, 'Last Test-Sci.(80)':{Maths:0, Science:13, SST:0, English:0}, '03/01/26-Math(40)': {Maths:10, Science:0, SST:0, English:0}},
+ {name:'Sonu-10th', marks:{Maths:26, Science:20, SST:0, English:0}, 'Last Test-Sci.(80)':{Maths:0, Science:20, SST:0, English:0}, '03/01/26-Math(40)': {Maths:26, Science:0, SST:0, English:0}},
+ {name:'Rajni-10th', marks:{Maths:8, Science:12, SST:0, English:0}, 'Last Test-Sci.(80)':{Maths:0, Science:12, SST:0, English:0}, '03/01/26-Math(40)': {Maths:8, Science:0, SST:0, English:0}},
+ {name:'Gaurav-9th', marks:{Maths:17, Science:12, SST:0, English:0}, 'Last Test-Sci.(80)':{Maths:0, Science:12, SST:0, English:0}, '03/01/26-Math(40)': {Maths:17, Science:0, SST:0, English:0}},
+ {name:'Ragni-9th', marks:{Maths:34, Science:62, SST:0, English:0}, 'Last Test-Sci.(80)':{Maths:0, Science:62, SST:0, English:0}, '03/01/26-Math(40)': {Maths:34, Science:0, SST:0, English:0}},
+ {name:'Disha-10th', marks:{Maths:17, Science:19, SST:0, English:0}, 'Last Test-Sci.(80)':{Maths:0, Science:19, SST:0, English:0}, '03/01/26-Math(40)': {Maths:17, Science:0, SST:0, English:0}}
+];
+
+const testKeys=new Set();
+students.forEach(s=>{Object.keys(s).forEach(k=>{if(k!=='name'&&k!=='marks')testKeys.add(k);});});
+const testArray=['overall',...Array.from(testKeys)];
+
+const rankOption=document.getElementById('rankOption');
+testArray.forEach(t=>{const opt=document.createElement('option');opt.value=t;opt.textContent=t==='overall'?'Overall Total':t;rankOption.appendChild(opt);});
+
+function calculateRank(option){
+ students.forEach(s=>{
+  const scores=option==='overall'?s.marks:s[option];
+  s.total=Object.values(scores).reduce((a,b)=>a+b,0);
+ });
+ students.sort((a,b)=>b.total-a.total);
+ students.forEach((s,i)=>s.rank=i+1);
+}
+
+let chart;
+const slider=document.getElementById('slider');
+
+function suggestion(studentName,testName,marks){
+ if(testName==='Last Test-Sci.(80)' && studentName==='Ragni-9th'){
+  return {title:'Good',detail:'Elaborate your answers more by including examples and neat diagrams. Also revise Chapter 4 and Chapter 5 thoroughly.'};
+ }
+
+ if(testName==='03/01/26-Math(40)'){
+  if(studentName==='Anuj-10th'){
+   return {title:'Good',detail:'Good performance. To improve further, revise Chapter 4 and Chapter 6 and practice mixed questions.'};
+  }
+  if(studentName==='Ragni-9th'){
+   return {title:'Good',detail:'Very good score. Improve accuracy and speed by revising Chapter 4 and Chapter 5 and solving practice papers.'};
+  }
+  if(marks>30){
+   return {title:'Good',detail:'Strong performance. Continue solving higher-level questions and full-length practice papers.'};
+  }
+  if(marks<15){
+   return {title:'Needs Practice',detail:'Focus on basics. Revise formulas carefully and practice Chapter 4, 5, and 6 step-by-step.'};
+  }
+  return {title:'Boost it up',detail:'You are close to a good score. Solve full-length practice papers, revise all important formulas, and practice Chapter 4, 5, and 6 regularly.'};
+ }
+
+ if(marks<50) return {title:'Needs Practice',detail:'Practice more questions and revise important concepts regularly.'};
+ if(marks<75) return {title:'Good',detail:'Good effort. Keep revising and practicing to improve consistency.'};
+ return {title:'Excellent',detail:'Excellent performance. Maintain the same consistency.'};
+}
+
+function toggleDetail(id){
+ const el=document.getElementById('detail-'+id);
+ if(el) el.style.display=el.style.display==='none'?'block':'none';
+}
+
+function getMaxMarks(option){
+ const match=option.match(/\((\d+)\)/);
+ return match?parseInt(match[1]):null;
+}
+
+function selectStudent(i,el,option='overall'){
+ document.querySelectorAll('.student-row').forEach(e=>e.classList.remove('active'));
+ el.classList.add('active');
+ const s=students[i];
+ const marksData=option==='overall'?s.marks:s[option];
+ let labels=Object.keys(marksData);
+ let data=Object.values(marksData);
+ let bgColors=['#2563eb','#22c55e','#facc15','#f43f5e'];
+
+ if(option!=='overall'){
+  const max=getMaxMarks(option);
+  const total=data.reduce((a,b)=>a+b,0);
+  const nonZero=data.filter(v=>v>0).length;
+  if(max && nonZero===1 && total<max){
+   const idx=data.findIndex(v=>v>0);
+   labels=[labels[idx],'Remaining'];
+   data=[total,max-total];
+   bgColors=[bgColors[idx],'#1e293b'];
+  }
+ }
+
+ if(chart) chart.destroy();
+ chart=new Chart(document.getElementById('pieChart'),{
+  type:'doughnut',
+  data:{labels:labels,datasets:[{data:data,backgroundColor:bgColors,borderColor:'#0f172a',borderWidth:3,hoverOffset:20}]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{color:'white',font:{size:14}}}},cutout:'40%'}
+ });
+
+ const details=document.getElementById('details');
+ details.innerHTML='';
+ Object.keys(marksData).forEach((sub,idx)=>{
+  if(marksData[sub]>0){
+   const sg=suggestion(s.name,option,marksData[sub]);
+   const div=document.createElement('div');
+   div.innerHTML=`<div class='subject'><span>${sub}</span><span>${marksData[sub]}</span></div>
+   <div class='improve'>
+    <div style="display:flex;justify-content:space-between;cursor:pointer" onclick="toggleDetail(${idx})">
+     <strong>${sg.title}</strong><span>⬇️</span>
+    </div>
+    <div class='detail' id='detail-${idx}'>${sg.detail}</div>
+   </div>`;
+   details.appendChild(div);
+  }
+ });
+}
+
+function renderSlider(option='overall'){
+ slider.innerHTML='';
+ calculateRank(option);
+ students.forEach((s,i)=>{
+  const div=document.createElement('div');
+  div.className='student-row'+(s.rank===1?' topper':'');
+  div.innerHTML=`#${s.rank} ${s.name} ${s.rank===1?'🏆':''}<br>Total: ${s.total}`;
+  div.addEventListener('click',()=>selectStudent(i,div,option));
+  slider.appendChild(div);
+ });
+ selectStudent(0,slider.children[0],option);
+}
+
+rankOption.addEventListener('change',()=>renderSlider(rankOption.value));
+renderSlider('overall');
+</script>
+</body>
+</html>
