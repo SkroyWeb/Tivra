@@ -63,14 +63,14 @@ const students=[
 
 const testKeys=new Set();
 students.forEach(s=>{Object.keys(s).forEach(k=>{if(k!=='name'&&k!=='marks')testKeys.add(k);});});
-const testArray=['overall',...Array.from(testKeys)];
+const testArray=['overall(120)',...Array.from(testKeys)];
 
 const rankOption=document.getElementById('rankOption');
-testArray.forEach(t=>{const opt=document.createElement('option');opt.value=t;opt.textContent=t==='overall'?'Overall Total':t;rankOption.appendChild(opt);});
+testArray.forEach(t=>{const opt=document.createElement('option');opt.value=t;opt.textContent=t==='overall(120)'?'Overall Total':t;rankOption.appendChild(opt);});
 
 function calculateRank(option){
  students.forEach(s=>{
-  const scores=option==='overall'?s.marks:s[option];
+  const scores=option==='overall(120)'?s.marks:s[option];
   s.total=Object.values(scores).reduce((a,b)=>a+b,0);
  });
  students.sort((a,b)=>b.total-a.total);
@@ -116,16 +116,16 @@ function getMaxMarks(option){
  return match?parseInt(match[1]):null;
 }
 
-function selectStudent(i,el,option='overall'){
+function selectStudent(i,el,option='overall(120)'){
  document.querySelectorAll('.student-row').forEach(e=>e.classList.remove('active'));
  el.classList.add('active');
  const s=students[i];
- const marksData=option==='overall'?s.marks:s[option];
+ const marksData=option==='overall(120)'?s.marks:s[option];
  let labels=Object.keys(marksData);
  let data=Object.values(marksData);
  let bgColors=['#2563eb','#22c55e','#facc15','#f43f5e'];
 
- if(option!=='overall'){
+ if(option!=='overall(120)'){
   const max=getMaxMarks(option);
   const total=data.reduce((a,b)=>a+b,0);
   const nonZero=data.filter(v=>v>0).length;
@@ -162,7 +162,7 @@ function selectStudent(i,el,option='overall'){
  });
 }
 
-function renderSlider(option='overall'){
+function renderSlider(option='overall(120)'){
  slider.innerHTML='';
  calculateRank(option);
  students.forEach((s,i)=>{
@@ -176,7 +176,7 @@ function renderSlider(option='overall'){
 }
 
 rankOption.addEventListener('change',()=>renderSlider(rankOption.value));
-renderSlider('overall');
+renderSlider('overall(120)');
 </script>
 </body>
 </html>
