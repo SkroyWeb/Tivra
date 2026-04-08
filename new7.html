@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Skroy Nova - Governance Structure</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 320px;
+            background-color: #f9fafb;
+            border-right: 1px solid #e5e7eb;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        .accent-bar {
+            width: 60px;
+            height: 6px;
+            background-color: #4f46e5;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.75rem;
+            color: #111827;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #4b5563;
+            margin-top: 2rem;
+        }
+
+        /* Main Content - Org Chart Area */
+        .chart-area {
+            flex: 1;
+            background-color: #ffffff;
+            position: relative;
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Background Grid */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Hierarchy Tree Styling */
+        .tree-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .org-node {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: all 0.3s ease;
+            width: 280px;
+        }
+
+        .org-node:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            border-color: #c7d2fe;
+        }
+
+        .node-title {
+            font-weight: 600;
+            color: #111827;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .node-role {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .node-icon {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            color: #4f46e5;
+        }
+
+        /* Top Level Styles */
+        .level-1 {
+            border-top: 4px solid #4f46e5;
+            background-color: #eff6ff;
+            width: 320px;
+        }
+
+        /* Second Level Styles */
+        .level-2 {
+            border-top: 4px solid #6366f1;
+            width: 300px;
+        }
+
+        /* Third Level Wrapper */
+        .level-3-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 3rem;
+            gap: 1.5rem;
+        }
+
+        .level-3 {
+            flex: 1;
+            border-top: 4px solid #a5b4fc;
+            font-size: 0.9rem;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 130px; /* Equal height */
+            justify-content: start;
+        }
+
+        /* Connecting Lines */
+        .connector-v {
+            width: 2px;
+            background-color: #cbd5e1;
+            height: 2.5rem;
+        }
+
+        .connector-branch {
+            position: relative;
+            height: 2rem;
+            width: 2px;
+            background-color: #cbd5e1;
+            margin-bottom: 1rem; /* Space before horizontal bar */
+        }
+
+        .connector-horizontal {
+            width: 70%; /* Connects the outer children */
+            height: 2px;
+            background-color: #cbd5e1;
+            position: absolute;
+            top: -2px; /* Align with top of vertical connectors of children */
+        }
+
+        /* Complex Branching Line Logic */
+        .branch-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .branch-lines {
+            position: relative;
+            height: 20px;
+            width: 68%; /* Should match the spread of the cards */
+            border-top: 2px solid #cbd5e1;
+            margin-bottom: 0;
+        }
+
+        .branch-lines::before { /* Center vertical line coming from parent */
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            width: 2px;
+            height: 30px;
+            background-color: #cbd5e1;
+            transform: translateX(-50%);
+        }
+
+        .vertical-connectors {
+            display: flex;
+            justify-content: space-between;
+            width: 68%;
+            margin-bottom: 0;
+        }
+
+        .v-line {
+            width: 2px;
+            height: 20px;
+            background-color: #cbd5e1;
+        }
+
+        /* Footer */
+        .footer-note {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 0.75rem;
+            color: #9ca3af;
+            background-color: rgba(255,255,255,0.8);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Sidebar -->
+<div class="sidebar">
+<div class="accent-bar"></div>
+<h1>Governance Structure</h1>
+<p class="text-sm font-semibold text-indigo-600 uppercase tracking-widest mt-2 mb-6">Organizational Chart</p>
+<div class="sidebar-desc">
+<p class="mb-4">A clear division of responsibilities is essential for the long-term sustainability and accountability of Skroy Nova.</p>
+<p class="text-sm text-gray-500 italic">"Structure enables scale."</p>
+</div>
+<div class="mt-auto">
+<div class="flex items-center text-gray-500 text-sm mb-2">
+<div class="w-3 h-3 rounded-full bg-indigo-600 mr-2"></div>
+<span>Strategic</span>
+</div>
+<div class="flex items-center text-gray-500 text-sm mb-2">
+<div class="w-3 h-3 rounded-full bg-indigo-400 mr-2"></div>
+<span>Executive</span>
+</div>
+<div class="flex items-center text-gray-500 text-sm">
+<div class="w-3 h-3 rounded-full bg-indigo-200 mr-2"></div>
+<span>Operational</span>
+</div>
+</div>
+</div>
+<!-- Chart Area -->
+<div class="chart-area">
+<div class="bg-grid"></div>
+<div class="tree-container">
+<!-- Level 1: Advisory -->
+<div class="org-node level-1">
+<div class="node-icon"><i class="fas fa-university"></i></div>
+<div class="node-title">Faculty Advisory Council</div>
+<div class="node-role">Oversight &amp; Mentorship</div>
+</div>
+<!-- Connector -->
+<div class="connector-v"></div>
+<!-- Level 2: Leadership -->
+<div class="org-node level-2">
+<div class="node-icon"><i class="fas fa-user-tie"></i></div>
+<div class="node-title">Founder &amp; Student Lead</div>
+<div class="node-role">Vision &amp; Execution</div>
+</div>
+<!-- Connector Branching -->
+<div class="branch-container mt-4">
+<div class="branch-lines"></div>
+<div class="vertical-connectors">
+<div class="v-line"></div>
+<div class="v-line"></div>
+<div class="v-line"></div>
+</div>
+</div>
+<!-- Level 3: Functional Teams -->
+<div class="level-3-wrapper">
+<!-- Team 1 -->
+<div class="org-node level-3">
+<div class="node-icon text-indigo-400"><i class="fas fa-cogs"></i></div>
+<div class="node-title text-sm">Technical Review Panel</div>
+<div class="node-role text-xs mt-2">Feasibility &amp; Innovation</div>
+</div>
+<!-- Team 2 -->
+<div class="org-node level-3">
+<div class="node-icon text-indigo-400"><i class="fas fa-calendar-check"></i></div>
+<div class="node-title text-sm">Event Operations Team</div>
+<div class="node-role text-xs mt-2">Logistics &amp; Coordination</div>
+</div>
+<!-- Team 3 -->
+<div class="org-node level-3">
+<div class="node-icon text-indigo-400"><i class="fas fa-file-contract"></i></div>
+<div class="node-title text-sm">Finance &amp; Compliance</div>
+<div class="node-role text-xs mt-2">Budget &amp; Regulations</div>
+</div>
+</div>
+</div>
+<!-- Footer Note -->
+<div class="footer-note">
+                SKROY NOVA | Governance Framework
+            </div>
+</div>
+</div>
+</body>
+</html>

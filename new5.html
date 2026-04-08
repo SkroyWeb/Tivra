@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Skroy Nova - Operational Model</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Institutional Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #111827;
+            letter-spacing: -0.02em;
+        }
+
+        /* Header Styling */
+        .header-section {
+            padding: 3rem 4rem 1rem 4rem;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            background-color: #ffffff;
+            z-index: 10;
+        }
+
+        .header-title-group {
+            position: relative;
+        }
+
+        .accent-bar {
+            width: 60px;
+            height: 4px;
+            background-color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+
+        /* Process Layout */
+        .process-container {
+            flex: 1;
+            padding: 2rem 4rem;
+            background-color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Grid for cards */
+        .phase-grid-top {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .phase-grid-bottom {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            width: 66%; /* roughly 2/3 width to center visually with top row's item width */
+            margin: 0 auto;
+        }
+
+        .phase-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .phase-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #e0e7ff;
+            font-weight: 700;
+            line-height: 1;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+        }
+
+        .phase-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding-right: 2rem;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .phase-content {
+            font-size: 0.875rem;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .phase-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .phase-content li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .phase-content li::before {
+            content: "•";
+            color: #4f46e5;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Flow Indicators */
+        .arrow-icon {
+            color: #d1d5db;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        /* Background Pattern */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .footer {
+            padding: 1rem 4rem;
+            background-color: #ffffff;
+            border-top: 1px solid #f3f4f6;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Header -->
+<div class="header-section">
+<div class="header-title-group">
+<div class="accent-bar"></div>
+<h1 class="text-4xl font-bold">Operational Model</h1>
+</div>
+<div class="text-right">
+<p class="text-xl text-gray-500 font-light">How Skroy Nova Will Function</p>
+<p class="text-xs text-indigo-600 font-semibold tracking-widest uppercase mt-1">Execution Framework</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="process-container">
+<div class="bg-grid"></div>
+<!-- Top Row: Phases 1, 2, 3 -->
+<div class="phase-grid-top">
+<!-- Phase 1 -->
+<div class="phase-card">
+<div class="phase-number">01</div>
+<h3 class="phase-title">Problem Identification</h3>
+<div class="phase-content">
+<ul>
+<li>Real-world institutional or community problems defined.</li>
+<li>Scope and constraints clearly documented for clarity.</li>
+</ul>
+</div>
+</div>
+<!-- Phase 2 -->
+<div class="phase-card">
+<div class="phase-number">02</div>
+<h3 class="phase-title">Proposal Submission</h3>
+<div class="phase-content">
+<ul>
+<li>Teams submit technical approach.</li>
+<li>Feasibility analysis &amp; cost estimation.</li>
+<li>Detailed implementation roadmap.</li>
+</ul>
+</div>
+</div>
+<!-- Phase 3 -->
+<div class="phase-card">
+<div class="phase-number">03</div>
+<h3 class="phase-title">Evaluation &amp; Shortlisting</h3>
+<div class="phase-content">
+<ul>
+<li>Academic review panel evaluation.</li>
+<li>Assessment of technical viability.</li>
+<li>Top teams selected for prototype development.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Connecting Lines Graphic (Abstract) -->
+<div class="w-full flex justify-center items-center h-8 mb-4 relative opacity-30">
+<div class="h-px bg-indigo-300 w-3/4"></div>
+<i class="fas fa-chevron-down text-indigo-400 absolute bg-gray-50 px-2"></i>
+</div>
+<!-- Bottom Row: Phases 4, 5 (Centered) -->
+<div class="phase-grid-bottom">
+<!-- Phase 4 -->
+<div class="phase-card">
+<div class="phase-number">04</div>
+<h3 class="phase-title">Development Stage</h3>
+<div class="phase-content">
+<ul>
+<li>Teams work under faculty mentorship.</li>
+<li>Periodic technical reviews conducted.</li>
+<li>Iterative refinement of prototypes.</li>
+</ul>
+</div>
+</div>
+<!-- Phase 5 -->
+<div class="phase-card">
+<div class="phase-number">05</div>
+<h3 class="phase-title">Final Demonstration</h3>
+<div class="phase-content">
+<ul>
+<li>Working model presented to panel.</li>
+<li>Evaluation based on practicality.</li>
+<li>Scalability &amp; sustainability assessment.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="footer">
+<p>Skroy Nova | Pre-Startup Initiative</p>
+<p>Page 06</p>
+</div>
+</div>
+</body>
+</html>

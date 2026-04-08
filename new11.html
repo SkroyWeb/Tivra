@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Skroy Nova - Closing Statement</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #111827;
+            letter-spacing: -0.02em;
+        }
+
+        /* Left Sidebar styling */
+        .sidebar {
+            width: 35%;
+            background-color: #f9fafb;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #e5e7eb;
+            position: relative;
+        }
+
+        .accent-bar {
+            width: 60px;
+            height: 6px;
+            background-color: #4f46e5; /* Indigo 600 */
+            margin-bottom: 2rem;
+        }
+
+        /* Main Content styling */
+        .content-area {
+            width: 65%;
+            padding: 4rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .text-body {
+            font-size: 1.25rem;
+            line-height: 1.75;
+            color: #374151; /* Gray 700 */
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .highlight-box {
+            border-left: 4px solid #4f46e5;
+            padding-left: 2rem;
+            margin-top: 3rem;
+            background-color: #f3f4f6;
+            padding: 2.5rem;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            font-size: 0.75rem;
+            color: #9ca3af;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Decorative Pattern (SVG base64 to avoid CSS gradients) */
+        .svg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e5e7eb' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Left Sidebar -->
+<div class="sidebar">
+<div class="svg-pattern"></div>
+<div style="z-index: 10; display: flex; flex-direction: column; height: 100%;">
+<div class="accent-bar"></div>
+<h1 class="text-5xl font-bold leading-tight mb-6">Closing<br/>Statement</h1>
+<div class="mt-auto mb-2">
+<p class="text-sm text-gray-500 font-medium uppercase tracking-widest">Internal Draft</p>
+<p class="text-xs text-gray-400 mt-1">Page 12</p>
+</div>
+</div>
+<!-- Bottom decorative element -->
+<div class="absolute bottom-8 left-12 opacity-20 text-indigo-900">
+<svg fill="none" height="80" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1" viewbox="0 0 24 24" width="80">
+<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+<polyline points="2 17 12 22 22 17"></polyline>
+<polyline points="2 12 12 17 22 12"></polyline>
+</svg>
+</div>
+</div>
+<!-- Main Content -->
+<div class="content-area">
+<div>
+<p class="text-body">
+<strong class="text-gray-900 font-semibold">Skroy Nova</strong> is currently in its conceptual phase and seeks academic guidance, refinement, and mentorship.
+            </p>
+<p class="text-body">
+                Its foundation rests on collaboration between student initiative and faculty wisdom. This initiative is designed not just as a project, but as a bridge to professional engineering practice.
+            </p>
+<div class="highlight-box">
+<p class="text-xl text-gray-800 font-medium italic leading-relaxed">
+                    “With structured oversight and institutional support, Skroy Nova can evolve into a meaningful platform that is truly engineered for the future.”
+                </p>
+</div>
+</div>
+<!-- Footer Metadata -->
+<div class="footer">
+            SKROY NOVA | Engineered for the Future
+        </div>
+</div>
+</div>
+</body>
+</html>

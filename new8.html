@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Skroy Nova - Pilot Implementation Plan</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #111827;
+            letter-spacing: -0.02em;
+        }
+
+        /* Left Sidebar styling */
+        .sidebar {
+            width: 30%;
+            background-color: #111827; /* Dark institutional blue/black */
+            color: #ffffff;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .accent-bar {
+            width: 40px;
+            height: 4px;
+            background-color: #4f46e5; /* Indigo 600 */
+            margin-bottom: 2rem;
+        }
+
+        /* Main Content styling */
+        .content-area {
+            width: 70%;
+            padding: 5rem 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #ffffff;
+        }
+
+        .section-header {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .bullet-point {
+            min-width: 24px;
+            height: 24px;
+            background-color: #eff6ff;
+            color: #4f46e5;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            margin-top: 0.25rem;
+            font-size: 0.75rem;
+        }
+
+        .list-text {
+            font-size: 1.25rem;
+            color: #1f2937;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .conclusion-box {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: #f9fafb;
+            border-left: 4px solid #4f46e5;
+        }
+
+        /* Decorative Grid */
+        .grid-pattern {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background-image: radial-gradient(#374151 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.2;
+        }
+
+        .page-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            opacity: 0.1;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Left Sidebar -->
+<div class="sidebar">
+<div class="grid-pattern"></div>
+<div>
+<div class="accent-bar"></div>
+<h1 class="text-4xl text-white font-bold leading-tight mb-4">Pilot<br/>Implementation<br/>Plan</h1>
+<p class="text-indigo-300 text-lg font-light mt-4">Year 1: Pilot Model</p>
+</div>
+<div class="z-10">
+<p class="text-sm text-gray-400 leading-relaxed opacity-80">
+                    A controlled launch strategy to test structure, refine governance, and ensure operational feasibility.
+                </p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="content-area relative">
+<div class="page-number">09</div>
+<p class="section-header">Operational Framework</p>
+<div class="mb-2">
+<p class="text-gray-500 mb-8 font-light text-lg">The initial launch will be strictly defined by the following parameters:</p>
+<div class="list-item">
+<div class="bullet-point">
+<i class="fas fa-bullseye"></i>
+</div>
+<p class="list-text">Limited to <strong class="text-gray-900 font-semibold">one defined real-world problem</strong></p>
+</div>
+<div class="list-item">
+<div class="bullet-point">
+<i class="fas fa-users"></i>
+</div>
+<p class="list-text">Restricted cohort of <strong class="text-gray-900 font-semibold">8–10 participating teams</strong></p>
+</div>
+<div class="list-item">
+<div class="bullet-point">
+<i class="fas fa-clipboard-check"></i>
+</div>
+<p class="list-text">Application of a <strong class="text-gray-900 font-semibold">structured evaluation framework</strong></p>
+</div>
+<div class="list-item">
+<div class="bullet-point">
+<i class="fas fa-book"></i>
+</div>
+<p class="list-text">Establishment of <strong class="text-gray-900 font-semibold">documented learning outcomes</strong></p>
+</div>
+</div>
+<div class="conclusion-box">
+<p class="text-gray-800 text-lg leading-relaxed">
+<span class="text-xs font-bold tracking-wider text-gray-500 uppercase block mb-1">Primary Objective</span>
+                    To test the operational structure, refine governance mechanisms, and ensure long-term feasibility before scaling to a larger institutional level.
+                </p>
+</div>
+<!-- Footer note -->
+<div class="absolute bottom-8 right-8 text-xs text-gray-400 font-mono">
+                CONCEPT DOCUMENT | V 1.0
+            </div>
+</div>
+</div>
+</body>
+</html>

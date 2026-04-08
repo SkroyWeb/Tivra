@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Skroy Nova - Founder's Note</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row; /* Split layout */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #111827;
+            letter-spacing: -0.02em;
+        }
+
+        /* Left Sidebar styling */
+        .sidebar {
+            width: 35%;
+            background-color: #f9fafb;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #e5e7eb;
+            position: relative;
+        }
+
+        .accent-bar {
+            width: 60px;
+            height: 6px;
+            background-color: #4f46e5; /* Indigo 600 */
+            margin-bottom: 2rem;
+        }
+
+        /* Main Content styling */
+        .content-area {
+            width: 65%;
+            padding: 4rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .text-body {
+            font-size: 1.125rem; /* 18px */
+            line-height: 1.75;
+            color: #374151; /* Gray 700 */
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .highlight-box {
+            border-left: 4px solid #4f46e5;
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+            background-color: #f3f4f6;
+            padding: 1.5rem;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            font-size: 0.75rem;
+            color: #9ca3af;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Decorative Grid */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body style="">
+<div class="slide-container">
+<!-- Left Sidebar -->
+<div class="sidebar">
+<div class="grid-bg"></div>
+<div style="z-index: 10;">
+<div class="accent-bar"></div>
+<h1 class="text-5xl font-bold leading-tight mb-6">Founder’s<br>Note</h1>
+<p class="text-sm text-gray-500 font-medium uppercase tracking-widest mt-auto mb-2">Internal Draft</p>
+<p class="text-xs text-gray-400">Page 02</p>
+</div>
+<!-- Bottom decorative element -->
+<div class="absolute bottom-8 left-12 opacity-20">
+<svg fill="none" height="40" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewBox="0 0 24 24" width="40">
+<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+<line x1="12" x2="12" y1="22.08" y2="12"></line>
+</svg>
+</div>
+</div>
+<!-- Main Content -->
+<div class="content-area">
+<div>
+<p class="text-body">
+<strong class="text-gray-900 font-semibold">Skroy Nova</strong> is currently in its conceptual stage, developed with the intention of strengthening applied engineering culture within our academic environment.
+                </p>
+<p class="text-body">
+                    While theoretical knowledge forms the backbone of engineering education, there remains a gap between classroom learning and real-world problem solving. Skroy Nova aims to bridge this gap by creating a structured, faculty-guided innovation platform where students work on practical, implementation-driven challenges.
+                </p>
+<p class="text-body">
+                    This document outlines the vision, structure, and proposed framework of the initiative. It is presented for academic review, refinement, and mentorship guidance before any formal launch.
+                </p>
+<div class="highlight-box">
+<p class="text-lg text-gray-800 font-medium italic leading-relaxed">
+                        “This is not an event proposal — it is the blueprint of a long-term innovation ecosystem.”
+                    </p>
+</div>
+</div>
+</div>
+<!-- Footer Metadata -->
+<div class="footer">
+            SKROY NOVA | Engineered for the Future
+        </div>
+</div>
+
+</body></html>

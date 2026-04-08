@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Skroy Nova - Cover</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        /* Institutional Design Elements */
+        .accent-bar {
+            background-color: #4f46e5; /* Indigo 600 - Professional & Trustworthy */
+            height: 8px;
+            width: 120px;
+            margin-bottom: 2rem;
+        }
+        .text-institutional-gray {
+            color: #374151; /* Gray 700 */
+        }
+        .text-institutional-light {
+            color: #6b7280; /* Gray 500 */
+        }
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-color: #f9fafb;
+            z-index: 0;
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-image: linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            z-index: 1;
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .content-wrapper {
+            z-index: 10;
+            flex: 1;
+            padding: 4rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .footer-metadata {
+            border-top: 1px solid #e5e7eb;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif; /* Serif for institutional authority */
+            font-size: 4.5rem;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 2rem;
+            letter-spacing: 0.05em;
+            color: #4b5563;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+        .document-type {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #4f46e5;
+            margin-bottom: 0.5rem;
+        }
+        .description-box {
+            max-width: 600px;
+            border-left: 2px solid #e5e7eb;
+            padding-left: 1.5rem;
+        }
+    </style>
+</head>
+<body style="">
+<div class="slide-container">
+<!-- Background Graphics -->
+<div class="bg-pattern"></div>
+<div class="grid-overlay"></div>
+<div class="content-wrapper">
+<!-- Header Tag -->
+<div>
+<p class="document-type">Concept Document</p>
+<div class="accent-bar"></div>
+</div>
+<!-- Main Title -->
+<h1>SKROY NOVA</h1>
+<h2>Engineered for the Future</h2>
+<!-- Core Description -->
+<div class="description-box mt-12">
+<p class="text-xl text-gray-800 font-medium leading-relaxed mb-2">
+                    A Structured Innovation Platform
+                </p>
+<p class="text-lg text-gray-600 leading-relaxed">
+                    Focused on Real-World Engineering Solutions <br>
+                    Pre-Startup Initiative
+                </p>
+</div>
+<!-- Version Info -->
+<div class="mt-8">
+<p class="text-sm font-mono text-gray-500 bg-gray-100 inline-block px-2 py-1 rounded">
+                    Version 1.0 | Internal Draft
+                </p>
+</div>
+<!-- Footer Metadata -->
+<div class="footer-metadata mt-auto">
+<div class="flex flex-col">
+<p class="font-semibold text-gray-900">Proposed by:</p>
+<p>Satyam Kumar Roy</p>
+</div>
+<div class="flex flex-col text-right">
+<p class="font-semibold text-gray-900">Institution: [ HMRITM ]</p>
+<p>Year: 2026</p>
+</div>
+</div>
+</div>
+<!-- Subtle Branding Mark -->
+<div class="absolute bottom-6 right-6 opacity-10">
+<svg fill="none" height="64" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1" viewBox="0 0 24 24" width="64">
+<rect height="20" width="20" x="2" y="2"></rect>
+<line x1="2" x2="22" y1="2" y2="22"></line>
+<line x1="22" x2="2" y1="2" y2="22"></line>
+</svg>
+</div>
+</div>
+</body></html>

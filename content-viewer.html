@@ -1,0 +1,132 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Skroy Nova Presentation</title>
+
+<style>
+
+body{
+zoom: 75%;
+margin:0;
+background:#111;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+font-family:Arial;
+overflow:hidden;
+}
+
+/* Responsive slide holder */
+
+#slideFrame{
+
+width:100vw;                 /* full device width */
+max-width:1280px;            /* max desktop width */
+
+aspect-ratio:16/9;           /* maintain slide ratio */
+
+border-radius:20px;
+border:none;
+background:white;
+overflow:hidden;
+
+}
+
+/* Controls */
+
+.controls{
+margin-top:15px;
+}
+
+button{
+padding:10px 25px;
+font-size:16px;
+margin:5px;
+border:none;
+background:#4f46e5;
+color:white;
+cursor:pointer;
+border-radius:6px;
+}
+
+button:hover{
+background:#3730a3;
+}
+
+.counter{
+color:white;
+margin-top:8px;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<iframe id="slideFrame" src="new.html" scrolling="no"></iframe>
+
+<div class="controls">
+<button onclick="prevSlide()">Previous</button>
+<button onclick="nextSlide()">Next</button>
+</div>
+
+<div class="counter" id="counter"></div>
+
+<script>
+
+let slides = [
+"new.html",
+"new1.html",
+"new2.html",
+"new3.html",
+"new4.html",
+"new5.html",
+"new6.html",
+"new7.html",
+"new8.html",
+"new9.html",
+"new10.html",
+"new11.html"
+];
+
+let index = 0;
+
+const frame = document.getElementById("slideFrame");
+const counter = document.getElementById("counter");
+
+function updateSlide(){
+frame.src = slides[index];
+counter.innerText = "Slide " + (index+1) + " / " + slides.length;
+}
+
+function nextSlide(){
+if(index < slides.length-1){
+index++;
+updateSlide();
+}
+}
+
+function prevSlide(){
+if(index > 0){
+index--;
+updateSlide();
+}
+}
+
+document.addEventListener("keydown", function(e){
+if(e.key === "ArrowRight") nextSlide();
+if(e.key === "ArrowLeft") prevSlide();
+});
+
+updateSlide();
+
+</script>
+
+</body>
+</html>
+```

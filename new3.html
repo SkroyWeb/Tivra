@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Skroy Nova - Vision Statement</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row; /* Split layout */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #111827;
+            letter-spacing: -0.02em;
+        }
+
+        /* Left Sidebar styling */
+        .sidebar {
+            width: 35%;
+            background-color: #f9fafb;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #e5e7eb;
+            position: relative;
+            z-index: 10;
+        }
+
+        .accent-bar {
+            width: 60px;
+            height: 6px;
+            background-color: #4f46e5; /* Indigo 600 */
+            margin-bottom: 2rem;
+        }
+
+        /* Main Content styling */
+        .content-area {
+            width: 65%;
+            padding: 4rem 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Centering content for impact */
+            position: relative;
+        }
+
+        .vision-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem; /* 36px */
+            line-height: 1.4;
+            color: #111827; /* Gray 900 */
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .vision-subtext {
+            font-size: 1.125rem; /* 18px */
+            line-height: 1.75;
+            color: #4b5563; /* Gray 600 */
+            text-align: center;
+            max-width: 80%;
+            font-weight: 300;
+        }
+
+        .quote-icon {
+            color: #e0e7ff; /* Very light indigo */
+            font-size: 8rem;
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 0;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 2rem;
+            right: 3rem;
+            font-size: 0.75rem;
+            color: #9ca3af;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Decorative Background Pattern */
+        .bg-pattern {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 400px;
+            height: 400px;
+            background-color: #f3f4f6;
+            border-radius: 100% 0 0 0;
+            opacity: 0.5;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Left Sidebar -->
+<div class="sidebar">
+<div style="z-index: 10;">
+<div class="accent-bar"></div>
+<h1 class="text-5xl font-bold leading-tight mb-6">Vision<br/>Statement</h1>
+<p class="text-sm text-gray-500 font-medium uppercase tracking-widest mt-auto mb-2">Internal Draft</p>
+<p class="text-xs text-gray-400">Page 04</p>
+</div>
+<!-- Bottom decorative element -->
+<div class="absolute bottom-8 left-12 opacity-20">
+<svg fill="none" height="40" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" viewbox="0 0 24 24" width="40">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" x2="12" y1="16" y2="12"></line>
+<line x1="12" x2="12.01" y1="8" y2="8"></line>
+</svg>
+</div>
+</div>
+<!-- Main Content -->
+<div class="content-area">
+<div class="bg-pattern"></div>
+<!-- Large Quote Mark for Visual Interest -->
+<div class="quote-icon">“</div>
+<div style="z-index: 10;">
+<p class="vision-text">
+                    To establish Skroy Nova as a structured innovation platform where emerging engineers transform real-world challenges into practical, scalable, and ethically responsible solutions.
+                </p>
+<div class="w-24 h-1 bg-gray-200 mx-auto mb-6"></div>
+<p class="vision-subtext">
+                    Bridging the gap between academic theory and institutional application through rigorous, mentorship-driven engineering.
+                </p>
+</div>
+</div>
+<!-- Footer Metadata -->
+<div class="footer">
+            SKROY NOVA | Engineered for the Future
+        </div>
+</div>
+</body>
+</html>
